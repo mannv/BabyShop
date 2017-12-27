@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Image } from 'react-native'
-import styles from './Styles/BabyLogoLargeStyle'
-import Images from '../Themes/Images'
+import styles from '../Styles/BabyLogoLargeStyle'
+import Images from '../../Themes/Images'
 export default class BabyLogoLarge extends Component {
   // // Prop type warnings
   // static propTypes = {

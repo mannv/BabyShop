@@ -1,5 +1,6 @@
 {
   "signIn": "Sign In",
+  "signUp": "Sign Up",
   "logOut": "Log Out",
   "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
   "progressiveImageComponent": "Progressive Image Component",
@@ -24,6 +25,7 @@
   "noItems": "No Items",
   "search": "Search",
   "Login_Heading": "Login",
+  "Register_Heading": "Register",
   "Placeholder_Email_Address":"You email address",
   "Placeholder_Password":"Password",
   "Link_Register_New_Account":"Register new account"

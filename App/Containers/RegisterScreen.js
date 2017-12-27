@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
 
 // Styles
 import styles from './Styles/RegisterScreenStyle'
+import BabyLogoLarge from '../Components/Screen/BabyLogoLarge'
+import RegisterForm from '../Components/Screen/RegisterForm'
 
 class RegisterScreen extends Component {
+
+  backLoginScreen = () => {
+    this.props.navigation.goBack();
+  }
+
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>RegisterScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <View style={styles.mainContainer}>
+        <View style={{flex: 1}}>
+          <BabyLogoLarge></BabyLogoLarge>
+        </View>
+        <View style={[styles.container, {flex: 2, padding: 50}]}>
+          <RegisterForm backLoginScreen={() => this.backLoginScreen()}></RegisterForm>
+        </View>
+      </View>
     )
   }
 }

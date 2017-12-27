@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native'
-import styles from './Styles/LoginFormStyle'
-import I18n from '../I18n'
-import RoundedButton from '../Components/RoundedButton'
-
+import styles from '../Styles/LoginFormStyle'
+import I18n from '../../I18n'
+import RoundedButton from '../RoundedButton'
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -18,10 +17,6 @@ export default class LoginForm extends Component {
   _loginAction = () => {
     console.log(this.state.email.toLowerCase());
     console.log(this.state.password);
-  }
-
-  _openRegisterForm = () => {
-    this.props.navigation.navigate('RegisterScreen');
   }
 
   render() {
@@ -41,7 +36,7 @@ export default class LoginForm extends Component {
               <RoundedButton style={{width: 80}} text={I18n.t('signIn')} onPress={() => this._loginAction()}/>
             </View>
             <View style={{flex: 2}}>
-              <TouchableOpacity onPress={() => this._openRegisterForm()}>
+              <TouchableOpacity onPress={() => this.props.registerScene()}>
                 <Text style={styles.registerLink}>{I18n.t('Link_Register_New_Account')}</Text>
               </TouchableOpacity>
             </View>
