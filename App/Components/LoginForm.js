@@ -4,7 +4,6 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native'
 import styles from './Styles/LoginFormStyle'
 import I18n from '../I18n'
 import RoundedButton from '../Components/RoundedButton'
-import PrimaryNav from '../Navigation/AppNavigation'
 
 
 export default class LoginForm extends Component {
@@ -26,7 +25,6 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>{I18n.t('Login_Heading')}</Text>
@@ -53,5 +51,3 @@ export default class LoginForm extends Component {
     )
   }
 }
-
-const ModalStack = PrimaryNav
