@@ -50,14 +50,18 @@ const ApplicationStyles = {
       borderWidth: 1,
       borderColor: Colors.border,
       height: 30,
-      borderRadius: 5,
-      paddingLeft: 5,
-      paddingRight: 5,
-      backgroundColor: Colors.snow
+      borderRadius: Metrics.borderRadius,
+      backgroundColor: Colors.snow,
+      paddingLeft: Metrics.baseMargin,
+      paddingRight: Metrics.baseMargin
     },
     link: {
       color: Colors.blue,
       textDecorationLine: 'underline'
+    },
+    padding_lr: {
+      paddingLeft: Metrics.baseMargin,
+      paddingRight: Metrics.baseMargin
     }
   },
   darkLabelContainer: {

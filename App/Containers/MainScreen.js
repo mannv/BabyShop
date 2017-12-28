@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import I18n from '../I18n'
+import MainHeadingSearch from '../Components/Screen/MainHeadingSearch'
 
 // Styles
 import styles from './Styles/MainScreenStyle'
@@ -10,11 +10,15 @@ import styles from './Styles/MainScreenStyle'
 class MainScreen extends Component {
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>MainScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <View style={styles.mainContainer}>
+        <View style={[styles.heading]}>
+          <MainHeadingSearch></MainHeadingSearch>
+        </View>
+        <View style={styles.sv}>
+          <Text>Noi dung con lai</Text>
+        </View>
+
+      </View>
     )
   }
 }
