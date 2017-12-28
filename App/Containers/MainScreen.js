@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import I18n from '../I18n'
+// import I18n from '../I18n'
+import MainSwiper from '../Components/Screen/MainSwiper'
 import MainHeadingSearch from '../Components/Screen/MainHeadingSearch'
+
 
 // Styles
 import styles from './Styles/MainScreenStyle'
@@ -15,7 +17,9 @@ class MainScreen extends Component {
           <MainHeadingSearch></MainHeadingSearch>
         </View>
         <View style={styles.sv}>
-          <Text>Noi dung con lai</Text>
+          <ScrollView>
+            <MainSwiper></MainSwiper>
+          </ScrollView>
         </View>
 
       </View>
