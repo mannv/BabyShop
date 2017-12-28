@@ -22,7 +22,7 @@ export default class LoginForm extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>{I18n.t('Login_Heading')}</Text>
+        <Text style={styles.heading}>{I18n.t('Heading_Login')}</Text>
         <View style={styles.form}>
           <TextInput onChangeText={(email) => this.setState({email})} value={this.state.email}
                      keyboardType='email-address' style={[styles.inputText, {marginTop: 20}]}

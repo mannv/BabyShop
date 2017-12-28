@@ -15,5 +15,13 @@ export default StyleSheet.create({
     ...ApplicationStyles.screen.link,
     paddingTop: 12,
     textAlign: 'right'
+  },
+  label: {
+    ...Fonts.style.normal,
+    textAlign: 'left'
+  },
+  inputText: {
+    ...ApplicationStyles.screen.inputText,
+    marginBottom: 20
   }
 })

@@ -16,10 +16,7 @@ class RegisterScreen extends Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <View style={{flex: 1}}>
-          <BabyLogoLarge></BabyLogoLarge>
-        </View>
-        <View style={[styles.container, {flex: 2, padding: 50}]}>
+        <View style={[styles.container, {padding: 50}]}>
           <RegisterForm backLoginScreen={() => this.backLoginScreen()}></RegisterForm>
         </View>
       </View>

@@ -24,9 +24,14 @@
   "deviceDetails": "Device Details",
   "noItems": "No Items",
   "search": "Search",
-  "Login_Heading": "Login",
-  "Register_Heading": "Register",
+  "Heading_Login": "Login",
+  "Heading_Register":"Create new account",
   "Placeholder_Email_Address":"You email address",
   "Placeholder_Password":"Password",
-  "Link_Register_New_Account":"Register new account"
+  "Link_Register_New_Account":"Register new account",
+  "Label_Fullname":"Fullname",
+  "Label_Phone_number":"Phone number",
+  "Label_Email_address":"Email addresss",
+  "Label_Password":"Password",
+  "Label_Enter_password_again":"Enter password again"
 }
