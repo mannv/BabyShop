@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import MainSwiper from '../Components/Screen/MainSwiper'
 import MainHeadingSearch from '../Components/Screen/MainHeadingSearch'
 import FlashSale from './FlashSale'
+import CategoryFeature from './CategoryFeature'
 
 // Styles
 import styles from './Styles/MainScreenStyle'
@@ -20,6 +21,11 @@ class MainScreen extends Component {
           <ScrollView>
             <MainSwiper></MainSwiper>
             <FlashSale></FlashSale>
+            <CategoryFeature title="Me & be"></CategoryFeature>
+            <CategoryFeature title="Do choi cho be"></CategoryFeature>
+            <CategoryFeature title="Be an dam"></CategoryFeature>
+            <CategoryFeature></CategoryFeature>
+            <CategoryFeature></CategoryFeature>
           </ScrollView>
         </View>
 

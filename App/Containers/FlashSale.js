@@ -34,9 +34,7 @@ class FlashSale extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    return (
-      <FlashSaveItem id={item.id} price={item.price} purchase={item.purchase} uri={item.uri}></FlashSaveItem>
-    )
+    return <FlashSaveItem item={item}></FlashSaveItem>
   }
 
   /* ***********************************************************

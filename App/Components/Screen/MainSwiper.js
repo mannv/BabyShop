@@ -21,7 +21,7 @@ export default class MainSwiper extends Component {
       }
     ];
     return (
-      <Swiper style={styles.wrapper} height={100} paginationStyle={{bottom: 10}}
+      <Swiper autoplay={true} style={styles.wrapper} height={100} paginationStyle={{bottom: 10}}
               activeDotStyle={{backgroundColor: '#ff5722'}} showsButtons={false}>
         <View style={styles.slide}>
           <Image style={styles.img} source={{uri: banners[0].uri}} />
