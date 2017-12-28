@@ -18,10 +18,13 @@ export default class FlashSaveItem extends Component {
     uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'
   }
 
+  openProjectDetail = () => {
+    Alert.alert(`Open product detail ID: ${this.props.id}`);
+  }
 
   render () {
     return (
-      <TouchableOpacity style={styles.container} onPress={() => {Alert.alert(this.props.id.toString())}}>
+      <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
         <View style={styles.thumbnail}>
           <Image source={{url: this.props.uri}} style={{width: 100, height: 100}}></Image>
         </View>

@@ -87,12 +87,16 @@ class FlashSale extends React.PureComponent {
   //   {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
   // )}
 
+  openListFlashSave = () => {
+    Alert.alert('open list flash sale screen');
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
           <Text style={styles.title}>{I18n.t('flash_sale')}</Text>
-          <TouchableOpacity onPress={() => {Alert.alert('ok')}}>
+          <TouchableOpacity onPress={() => this.openListFlashSave()}>
             <Text style={styles.more}>{I18n.t('more...')}</Text>
           </TouchableOpacity>
         </View>
