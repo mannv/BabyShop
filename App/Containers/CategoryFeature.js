@@ -16,16 +16,7 @@ class CategoryFeature extends React.PureComponent {
   *************************************************************/
   // Defaults for props
   static defaultProps = {
-    id: 1,
-    title: 'Category title',
-    items: [
-      {id: 4, price: '116000', uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'},
-      {id: 1, price: '99000', uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'},
-      {id: 6, price: '46000', uri: 'https://cf.shopee.vn/file/0c6dfa305b72950843003e611d8fde8b_tn'},
-      {id: 2, price: '180000', uri: 'https://cf.shopee.vn/file/635987fe44199841a6af8295ce5a7fe7_tn'},
-      {id: 3, price: '99000', uri: 'https://cf.shopee.vn/file/7e9fc945c8d650ef618cf678074b7072_tn'},
-      {id: 5, price: '39000', uri: 'https://cf.shopee.vn/file/ce628de4c6eb9408d99005d66d6f27a1_tn'}
-    ]
+    category: {}
   }
 
   /* ***********************************************************
@@ -73,23 +64,24 @@ class CategoryFeature extends React.PureComponent {
   oneScreensWorth = 20
 
   openCategoryList = () => {
-    Alert.alert(`open category screen: ${this.props.id}`);
+    Alert.alert(`open category screen: ${this.props.category.id}`);
   }
 
   render () {
+    const {category} = this.props;
     return (
     <View style={styles.container}>
       <View style={styles.heading}>
-        <Text style={styles.title}>{this.props.title}</Text>
+        <Text style={styles.title}>{category.title}</Text>
         <TouchableOpacity onPress={() => this.openCategoryList()}>
-          <Text style={styles.more}>{I18n.t('more...')}</Text>
+          <Text style={styles.more}>{I18n.t('more')}</Text>
         </TouchableOpacity>
       </View>
       <FlatList
         showsHorizontalScrollIndicator={false}
         horizontal={true}
         contentContainerStyle={styles.listContent}
-        data={this.props.items}
+        data={category.items}
         renderItem={this.renderRow}
         keyExtractor={this.keyExtractor}
         initialNumToRender={this.oneScreensWorth}

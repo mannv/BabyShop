@@ -21,7 +21,7 @@ export default class FlashSaveItem extends Component {
   }
 
   openProjectDetail = () => {
-    Alert.alert(`Open product detail ID: ${this.props.id}`);
+    Alert.alert(`Open product detail ID: ${this.props.item.id}`);
   }
 
   render() {
