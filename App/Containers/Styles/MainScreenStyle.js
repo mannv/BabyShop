@@ -6,10 +6,10 @@ export default StyleSheet.create({
   heading: {
     ...ApplicationStyles.screen.padding_lr,
     flex: 1,
-    backgroundColor: '#ff5722'
+    backgroundColor: Colors.organe
   },
   sv: {
     flex: 16,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.gray
   }
 })

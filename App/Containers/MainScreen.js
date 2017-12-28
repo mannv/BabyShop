@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // import I18n from '../I18n'
 import MainSwiper from '../Components/Screen/MainSwiper'
 import MainHeadingSearch from '../Components/Screen/MainHeadingSearch'
-
+import FlashSale from './FlashSale'
 
 // Styles
 import styles from './Styles/MainScreenStyle'
@@ -19,6 +19,7 @@ class MainScreen extends Component {
         <View style={styles.sv}>
           <ScrollView>
             <MainSwiper></MainSwiper>
+            <FlashSale></FlashSale>
           </ScrollView>
         </View>
 
