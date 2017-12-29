@@ -1,4 +1,6 @@
 import { StackNavigator } from 'react-navigation'
+import ProfileScreen from '../Containers/ProfileScreen'
+import HomeScreen from '../Containers/HomeScreen'
 import CategoryScreen from '../Containers/CategoryScreen'
 import MainScreen from '../Containers/MainScreen'
 import RegisterScreen from '../Containers/RegisterScreen'
@@ -9,6 +11,8 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  ProfileScreen: { screen: ProfileScreen },
+  HomeScreen: { screen: HomeScreen },
   CategoryScreen: { screen: CategoryScreen },
   MainScreen: { screen: MainScreen },
   RegisterScreen: { screen: RegisterScreen },
