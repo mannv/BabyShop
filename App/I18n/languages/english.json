@@ -36,5 +36,8 @@
   "Label_Enter_password_again":"Enter password again",
   //main screen,
   "flash_sale": "Flash sale",
-  "more": "more..."
+  "more": "more...",
+  "close": "Close",
+  "list_category":"List category",
+  "register_date":"Register date: {{date}}"
 }

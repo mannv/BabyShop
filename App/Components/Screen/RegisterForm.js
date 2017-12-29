@@ -64,7 +64,7 @@ export default class RegisterForm extends Component {
 
           <View style={{paddingTop: 20, flexDirection: 'row'}}>
             <View style={{flex: 1}}>
-              <RoundedButton style={{width: 80}} text={I18n.t('signUp')} onPress={() => this.registerAction()}/>
+              <RoundedButton text={I18n.t('signUp')} onPress={() => this.registerAction()}/>
             </View>
             <View style={{flex: 2}}>
               <TouchableOpacity onPress={() => this.props.backLoginScreen()}>

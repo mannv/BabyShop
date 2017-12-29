@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import Fonts from '../../Themes/Fonts'
-import ApplicationStyles from '../../Themes/ApplicationStyles'
+import { ApplicationStyles, Metrics } from '../../Themes'
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
@@ -8,11 +8,10 @@ export default StyleSheet.create({
   },
   heading: {
     ...Fonts.style.h1,
-    fontSize: 30,
+    fontSize: 30 * Metrics.fontScale,
     textAlign: 'center'
   },
   form: {
-    backgroundColor: '#6b52ae'
   },
   registerLink: {
     ...ApplicationStyles.screen.link,

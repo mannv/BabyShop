@@ -33,7 +33,7 @@ export default class LoginForm extends Component {
 
           <View style={{paddingTop: 20, flexDirection: 'row'}}>
             <View style={{flex: 1}}>
-              <RoundedButton style={{width: 80}} text={I18n.t('signIn')} onPress={() => this._loginAction()}/>
+              <RoundedButton text={I18n.t('signIn')} onPress={() => this._loginAction()}/>
             </View>
             <View style={{flex: 2}}>
               <TouchableOpacity onPress={() => this.props.registerScene()}>

@@ -12,9 +12,6 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  CartScreen: { screen: CartScreen },
-  ProfileScreen: { screen: ProfileScreen },
-  HomeScreen: { screen: HomeScreen },
   CategoryScreen: { screen: CategoryScreen },
   MainScreen: { screen: MainScreen },
   RegisterScreen: { screen: RegisterScreen },

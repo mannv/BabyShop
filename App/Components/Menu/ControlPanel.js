@@ -1,27 +1,26 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from './ControlPanelStyle'
+import UserInfo from './UserInfo'
+
+import RoundedButton from '../RoundedButton'
+import I18n from '../../I18n'
 
 export default class ControlPanel extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  // Defaults for props
+  static defaultProps = {
+    closeMenu: PropTypes.func
+  }
 
   render () {
     return (
       <View style={styles.container}>
-        <Text>ControlPanel Component</Text>
-        <TouchableOpacity onPress={this.props.closeMenu}>
-          <Text style={styles.txtClose}>Close</Text>
-        </TouchableOpacity>
+        <UserInfo style={{flex: 1}}></UserInfo>
+        <View style={{flex: 4}}>
+          <Text>{I18n.t('list_category')}</Text>
+          <RoundedButton style={styles.btn} onPress={this.props.closeMenu} text={I18n.t('close')}></RoundedButton>
+        </View>
       </View>
     )
   }

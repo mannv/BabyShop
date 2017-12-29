@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import ApplicationStyles from '../../Themes/ApplicationStyles'
+import {ApplicationStyles, Metrics} from '../../Themes'
 import Fonts from '../../Themes/Fonts'
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -8,7 +8,7 @@ export default StyleSheet.create({
   },
   heading: {
     ...Fonts.style.h1,
-    fontSize: 30,
+    fontSize: 30 * Metrics.fontScale,
     textAlign: 'center'
   },
   backLink: {

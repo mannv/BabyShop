@@ -18,7 +18,7 @@ export default class BabyLogoLarge extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Image source={Images.logo} resizeMode='stretch' />
+        <Image style={styles.img} source={Images.logo} resizeMode='stretch' />
       </View>
     )
   }

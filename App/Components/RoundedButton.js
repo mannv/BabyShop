@@ -4,12 +4,12 @@ import { TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/RoundedButtonStyles'
 
 export default class RoundedButton extends Component {
-  static propTypes = {
+  static defaultProps = {
     onPress: PropTypes.func,
     text: PropTypes.string,
     children: PropTypes.string,
     navigator: PropTypes.object,
-    style: PropTypes.object,
+    style: PropTypes.object
   }
 
   getText () {
