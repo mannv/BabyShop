@@ -25,7 +25,8 @@ const colors = {
   text: '#E0D7E5',
   blue: 'blue',
   gray: 'gray',
-  organe: '#ff5722'
+  organe: '#ff5722',
+  black: 'black'
 }
 
 export default colors

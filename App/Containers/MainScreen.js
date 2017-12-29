@@ -5,15 +5,20 @@ import {connect} from 'react-redux'
 import Drawer from 'react-native-drawer'
 import ControlPanel from '../Components/Menu/ControlPanel'
 import TabNavigator from 'react-native-tab-navigator';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import HomeScreen from './HomeScreen'
 import ProfileScreen from './ProfileScreen'
+import CartScreen from './CartScreen'
+import {Metrics, Colors} from '../Themes'
 
 class MainScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      selectedTab: 'home'
+    };
   }
 
   closeControlPanel = () => {
@@ -23,30 +28,46 @@ class MainScreen extends Component {
     this._drawer.open()
   };
 
+  renderIcon = (iconName, selected = false) => {
+    const color = selected ? Colors.organe : Colors.gray;
+    return (
+      <Icon style={{color: color}} name={iconName} size={Metrics.icons.medium}/>
+    )
+  }
+
   render() {
     return (
 
-    <Drawer openDrawerOffset={0.2} tapToClose
-      ref={(ref) => this._drawer = ref}
-      content={<ControlPanel closeMenu={() => this.closeControlPanel()} />}
-    >
+      <Drawer openDrawerOffset={0.2} tapToClose
+              ref={(ref) => this._drawer = ref}
+              content={<ControlPanel closeMenu={() => this.closeControlPanel()} />}
+      >
 
-      <TabNavigator>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'home'}
-          title="Home"
-          badgeText="1"
-          onPress={() => this.setState({ selectedTab: 'home' })}>
-          <HomeScreen></HomeScreen>
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'profile'}
-          title="Profile"
-          onPress={() => this.setState({ selectedTab: 'profile' })}>
-          <ProfileScreen></ProfileScreen>
-        </TabNavigator.Item>
-      </TabNavigator>
-    </Drawer>
+        <TabNavigator>
+          <TabNavigator.Item
+            renderIcon={() => this.renderIcon('home')}
+            renderSelectedIcon={() => this.renderIcon('home', true)}
+            selected={this.state.selectedTab === 'home'}
+            onPress={() => this.setState({ selectedTab: 'home' })}>
+            <HomeScreen openMenu={() => this.openControlPanel()}></HomeScreen>
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            badgeText={1}
+            renderIcon={() => this.renderIcon('shopping-cart')}
+            renderSelectedIcon={() => this.renderIcon('shopping-cart', true)}
+            selected={this.state.selectedTab === 'cart'}
+            onPress={() => this.setState({ selectedTab: 'cart' })}>
+            <CartScreen></CartScreen>
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            renderIcon={() => this.renderIcon('user')}
+            renderSelectedIcon={() => this.renderIcon('user', true)}
+            selected={this.state.selectedTab === 'profile'}
+            onPress={() => this.setState({ selectedTab: 'profile' })}>
+            <ProfileScreen></ProfileScreen>
+          </TabNavigator.Item>
+        </TabNavigator>
+      </Drawer>
     )
   }
 }

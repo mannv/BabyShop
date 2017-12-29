@@ -49,7 +49,7 @@ const ApplicationStyles = {
       ...Fonts.style.normal,
       borderWidth: 1,
       borderColor: Colors.border,
-      height: 30,
+      height: 30 * Metrics.fontScale,
       borderRadius: Metrics.borderRadius,
       backgroundColor: Colors.snow,
       paddingLeft: Metrics.baseMargin,

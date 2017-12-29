@@ -5,6 +5,7 @@ const aspectRatio = height / width;
 // Used via Metrics.baseMargin
 const metrics = {
   isPhone: aspectRatio > 1.6,
+  fontScale: aspectRatio > 1.6 ? 1 : 1.5,
   marginHorizontal: 10,
   marginVertical: 10,
   section: 25,

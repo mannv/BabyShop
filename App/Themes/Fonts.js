@@ -1,5 +1,5 @@
 import Metrics from './Metrics'
-const fontScale = Metrics.isPhone ? 1 : 1.3;
+const  { fontScale } = Metrics;
 const type = {
   base: 'Avenir-Book',
   bold: 'Avenir-Black',

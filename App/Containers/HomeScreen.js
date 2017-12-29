@@ -119,7 +119,7 @@ class HomeScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={[styles.heading]}>
-          <MainHeadingSearch openMenu={() => this.openControlPanel()}></MainHeadingSearch>
+          <MainHeadingSearch openMenu={() => this.props.openMenu()}></MainHeadingSearch>
         </View>
         <View style={styles.sv}>
           <ScrollView>

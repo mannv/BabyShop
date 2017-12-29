@@ -7,14 +7,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row'
   },
-  icon: {
+  iconTouchable: {
     flex: 1,
+    // width: Metrics.screenWidth / 12,
     justifyContent: 'center',
+    alignItems: 'center'
   },
   searchInput: {
     ...ApplicationStyles.screen.inputText,
+    // width: Metrics.screenWidth / 12 * 11,
     flex: 11,
     justifyContent: 'center',
-
+    alignItems: 'center'
   }
 })

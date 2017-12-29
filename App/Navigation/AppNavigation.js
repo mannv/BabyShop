@@ -1,4 +1,5 @@
 import { StackNavigator } from 'react-navigation'
+import CartScreen from '../Containers/CartScreen'
 import ProfileScreen from '../Containers/ProfileScreen'
 import HomeScreen from '../Containers/HomeScreen'
 import CategoryScreen from '../Containers/CategoryScreen'
@@ -11,6 +12,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  CartScreen: { screen: CartScreen },
   ProfileScreen: { screen: ProfileScreen },
   HomeScreen: { screen: HomeScreen },
   CategoryScreen: { screen: CategoryScreen },
