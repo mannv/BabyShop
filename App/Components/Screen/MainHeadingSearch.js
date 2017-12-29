@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
-import {View, Text, TextInput} from 'react-native'
+import {View, Text, TextInput, TouchableOpacity} from 'react-native'
 import styles from '../Styles/MainHeadingSearchStyle'
 import Icon from 'react-native-vector-icons/Ionicons'
 import {Metrics} from '../../Themes'
@@ -16,11 +16,14 @@ export default class MainHeadingSearch extends Component {
   // static defaultProps = {
   //   someSetting: false
   // }
+  // openMenu
 
   render() {
     return (
       <View style={styles.container}>
-        <Icon style={styles.icon} name='ios-menu' size={Metrics.icons.medium} color='white'/>
+        <TouchableOpacity onPress={this.props.openMenu}>
+          <Icon style={styles.icon} name='ios-menu' size={Metrics.icons.medium} color='white'/>
+        </TouchableOpacity>
         <TextInput style={styles.searchInput}></TextInput>
       </View>
     )

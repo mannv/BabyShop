@@ -6,6 +6,8 @@ import MainSwiper from '../Components/Screen/MainSwiper'
 import MainHeadingSearch from '../Components/Screen/MainHeadingSearch'
 import FlashSale from './FlashSale'
 import CategoryFeature from './CategoryFeature'
+import Drawer from 'react-native-drawer'
+import ControlPanel from '../Components/Menu/ControlPanel'
 
 // Styles
 import styles from './Styles/MainScreenStyle'
@@ -113,11 +115,23 @@ class MainScreen extends Component {
     this.loadCategoryFeatureData();
   }
 
+  closeControlPanel = () => {
+    this._drawer.close()
+  };
+  openControlPanel = () => {
+    this._drawer.open()
+  };
+
   render() {
     return (
+
+    <Drawer openDrawerOffset={0.2} tapToClose
+      ref={(ref) => this._drawer = ref}
+      content={<ControlPanel closeMenu={() => this.closeControlPanel()} />}
+    >
       <View style={styles.mainContainer}>
         <View style={[styles.heading]}>
-          <MainHeadingSearch></MainHeadingSearch>
+          <MainHeadingSearch openMenu={() => this.openControlPanel()}></MainHeadingSearch>
         </View>
         <View style={styles.sv}>
           <ScrollView>
@@ -134,6 +148,7 @@ class MainScreen extends Component {
         </View>
 
       </View>
+    </Drawer>
     )
   }
 }
