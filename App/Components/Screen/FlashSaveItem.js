@@ -28,10 +28,8 @@ export default class FlashSaveItem extends Component {
     const {item} = this.props;
     return (
       <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
-        <View style={styles.thumbnail}>
-          <Image source={{url: item.uri}} style={{width: 100, height: 100}}></Image>
-        </View>
-        <Text style={styles.price}>{item.price}đ</Text>
+        <Image source={{url: item.uri}} style={styles.thumbnail}></Image>
+        <Text style={styles.price}>{item.price}</Text>
         <View style={styles.purchase}>
           <Text style={styles.purchase_text}>{item.purchase}</Text>
         </View>

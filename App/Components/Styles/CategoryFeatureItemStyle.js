@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Metrics, Colors, Fonts } from '../../Themes'
+
+const imagePerPage = Metrics.isPhone ? 3 : 4;
+const imagePadding = imagePerPage *  Metrics.baseMargin * 2;
+const borderPadding = imagePerPage * 2;
+const imageWidth = (Metrics.screenWidth - (imagePadding + borderPadding)) / imagePerPage;
+
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
@@ -10,16 +16,18 @@ export default StyleSheet.create({
     borderColor: Colors.border
   },
   thumbnail: {
-
+    width: imageWidth,
+    height: imageWidth
   },
   price: {
+    ...Fonts.style.normal,
     paddingTop: Metrics.baseMargin,
     paddingBottom: Metrics.baseMargin,
     color: Colors.organe,
     textAlign: 'center'
   },
   purchase_text: {
-    ...Fonts.size.normal,
+    ...Fonts.style.normal,
     fontWeight: 'bold',
     color: Colors.organe,
   }

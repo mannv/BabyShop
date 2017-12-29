@@ -56,6 +56,7 @@ const ApplicationStyles = {
       paddingRight: Metrics.baseMargin
     },
     link: {
+      ...Fonts.style.normal,
       color: Colors.blue,
       textDecorationLine: 'underline'
     },

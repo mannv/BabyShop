@@ -27,10 +27,8 @@ export default class CategoryFeatureItem extends Component {
     const {item} = this.props;
     return (
       <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
-        <View style={styles.thumbnail}>
-          <Image source={{url: item.uri}} style={{width: 100, height: 100}}></Image>
-        </View>
-        <Text style={styles.price}>{item.price}đ</Text>
+        <Image source={{url: item.uri}} style={styles.thumbnail}></Image>
+        <Text style={styles.price}>{item.price}</Text>
       </TouchableOpacity>
     )
   }

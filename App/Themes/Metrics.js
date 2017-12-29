@@ -1,9 +1,10 @@
 import {Dimensions, Platform} from 'react-native'
 
 const { width, height } = Dimensions.get('window')
-
+const aspectRatio = height / width;
 // Used via Metrics.baseMargin
 const metrics = {
+  isPhone: aspectRatio > 1.6,
   marginHorizontal: 10,
   marginVertical: 10,
   section: 25,

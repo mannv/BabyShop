@@ -1,3 +1,5 @@
+import Metrics from './Metrics'
+const fontScale = Metrics.isPhone ? 1 : 1.3;
 const type = {
   base: 'Avenir-Book',
   bold: 'Avenir-Black',
@@ -5,17 +7,17 @@ const type = {
 }
 
 const size = {
-  h1: 38,
-  h2: 34,
-  h3: 30,
-  h4: 26,
-  h5: 20,
-  h6: 19,
-  input: 18,
-  regular: 17,
-  medium: 14,
-  small: 12,
-  tiny: 8.5
+  h1: 38 * fontScale,
+  h2: 34 * fontScale,
+  h3: 30 * fontScale,
+  h4: 26 * fontScale,
+  h5: 20 * fontScale,
+  h6: 19 * fontScale,
+  input: 18 * fontScale,
+  regular: 17 * fontScale,
+  medium: 14 * fontScale,
+  small: 12 * fontScale,
+  tiny: 8.5 * fontScale
 }
 
 const style = {
