@@ -8,12 +8,13 @@ export default class TextLink extends Component {
   static defaultProps = {
     text: PropTypes.string,
     textAlign: 'center',
-    onPress: PropTypes.func
+    onPress: PropTypes.func,
+    style: null
   }
 
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={styles.container}>
+      <TouchableOpacity onPress={this.props.onPress} style={[this.props.style, styles.container]}>
         <Text style={[styles.link, {textAlign: this.props.textAlign}]}>{this.props.text}</Text>
       </TouchableOpacity>
     )

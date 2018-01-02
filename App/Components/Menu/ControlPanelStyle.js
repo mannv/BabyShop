@@ -6,11 +6,17 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
+    borderRightWidth: 1,
+    borderColor: Colors.border
   },
   btn: {
-    backgroundColor: Colors.steel,
+    backgroundColor: '#868e96',
     width: btnWidth,
     alignSelf: 'center'
+  },
+  footer: {
+    backgroundColor: 'gray',
+    justifyContent: 'center'
   }
 })

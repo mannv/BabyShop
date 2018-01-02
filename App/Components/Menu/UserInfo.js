@@ -21,7 +21,7 @@ export default class UserInfo extends Component {
         <Image style={styles.avatar} source={Images.avatar}></Image>
         <View style={{flexDirection: 'row', position: 'absolute', bottom: 0}}>
           <Text style={[styles.registerDate, {flex: 2}]}>{I18n.t('register_date', {date: '2017/10'})}</Text>
-          <TextLink style={{flex: 1}} text={I18n.t('logOut')} textAlign='right' onPress={() => this.logoutAction()}></TextLink>
+          <TextLink textAlign='right' style={[styles.logout, {flex: 1}]} text={I18n.t('logOut')} onPress={() => this.logoutAction()}></TextLink>
         </View>
       </View>
     )

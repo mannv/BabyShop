@@ -18,6 +18,10 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin
   },
   registerDate: {
-    ...Fonts.style.normal
+    ...Fonts.style.normal,
+    paddingLeft: Metrics.baseMargin
+  },
+  logout: {
+    paddingRight: Metrics.baseMargin
   }
 })
