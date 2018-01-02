@@ -10,11 +10,12 @@ export default class CategoryPanel extends Component {
       id: 1,
       name: 'Category name'
     }],
-    selectedCategory: PropTypes.func
+    selectedCategory: PropTypes.func,
+    navigate: null,
   }
 
-  selectedCategory = (id) => {
-    Alert.alert('choose category: ' + id);
+  selectedCategory = (item) => {
+    this.props.navigate('CategoryScreen', item);
   }
 
   render () {
@@ -25,7 +26,7 @@ export default class CategoryPanel extends Component {
         {
           items.map((item, index) => {
             return (
-              <TouchableOpacity style={styles.categoryItem} key={index} onPress={() => this.selectedCategory(item.id)}>
+              <TouchableOpacity style={styles.categoryItem} key={index} onPress={() => this.selectedCategory(item)}>
                 <Text style={styles.categoryName}>{item.name}</Text>
               </TouchableOpacity>
             );

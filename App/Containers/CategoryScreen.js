@@ -1,32 +1,46 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {ScrollView, Text, KeyboardAvoidingView, TouchableOpacity, View} from 'react-native'
+import {connect} from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
 import styles from './Styles/CategoryScreenStyle'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { Metrics } from '../Themes'
 
 class CategoryScreen extends Component {
-  render () {
+  render() {
+    const {navigation} = this.props;
+    const {params} = this.props.navigation.state;
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>CategoryScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <View style={styles.container}>
+        <View style={styles.heading}>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <TouchableOpacity style={styles.touchIconBack} onPress={() => {navigation.goBack()}}>
+              <Icon style={styles.iconBack} name='ios-arrow-back' size={Metrics.icons.medium} />
+            </TouchableOpacity>
+            <Text style={styles.categoryName}>ID {params.name} -- {params.id}</Text>
+          </View>
+        </View>
+        <View style={styles.content}>
+          <ScrollView>
+
+
+
+          </ScrollView>
+        </View>
+      </View>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen)

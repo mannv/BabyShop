@@ -11,7 +11,8 @@ import I18n from '../../I18n'
 export default class ControlPanel extends Component {
   // Defaults for props
   static defaultProps = {
-    closeMenu: PropTypes.func
+    closeMenu: PropTypes.func,
+    navigate: null,
   }
 
   render() {
@@ -36,7 +37,7 @@ export default class ControlPanel extends Component {
         </View>
         <View style={{flex: 9}}>
           <ScrollView>
-            <CategoryPanel items={cateItems}></CategoryPanel>
+            <CategoryPanel navigate={this.props.navigate} items={cateItems}></CategoryPanel>
           </ScrollView>
         </View>
         <View style={[{flex: 1}, styles.footer]}>

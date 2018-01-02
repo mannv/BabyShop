@@ -36,11 +36,12 @@ class MainScreen extends Component {
   }
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
 
       <Drawer openDrawerOffset={0.2} tapToClose
               ref={(ref) => this._drawer = ref}
-              content={<ControlPanel closeMenu={() => this.closeControlPanel()} />}
+              content={<ControlPanel navigate={navigate} closeMenu={() => this.closeControlPanel()} />}
       >
 
         <TabNavigator>

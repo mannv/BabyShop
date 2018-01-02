@@ -1,7 +1,4 @@
 import { StackNavigator } from 'react-navigation'
-import CartScreen from '../Containers/CartScreen'
-import ProfileScreen from '../Containers/ProfileScreen'
-import HomeScreen from '../Containers/HomeScreen'
 import CategoryScreen from '../Containers/CategoryScreen'
 import MainScreen from '../Containers/MainScreen'
 import RegisterScreen from '../Containers/RegisterScreen'
