@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ScrollView, Text, KeyboardAvoidingView, TouchableOpacity, View} from 'react-native'
+import {Text, KeyboardAvoidingView, TouchableOpacity, View} from 'react-native'
 import {connect} from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import styles from './Styles/CategoryScreenStyle'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Metrics } from '../Themes'
+import CategoryListView from './CategoryListView'
 
 class CategoryScreen extends Component {
   render() {
@@ -24,11 +25,7 @@ class CategoryScreen extends Component {
           </View>
         </View>
         <View style={styles.content}>
-          <ScrollView>
-
-
-
-          </ScrollView>
+          <CategoryListView></CategoryListView>
         </View>
       </View>
     )

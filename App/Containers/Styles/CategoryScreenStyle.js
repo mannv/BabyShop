@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles, Colors, Fonts } from '../../Themes/'
+import { ApplicationStyles, Colors, Fonts, Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -18,7 +18,8 @@ export default StyleSheet.create({
   },
   touchIconBack: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingLeft: Metrics.baseMargin
   },
   categoryName: {
     ...Fonts.style.normal,
