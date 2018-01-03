@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ScrollView, Text, View, TouchableOpacity, Image, Alert} from 'react-native'
+import {ScrollView, Text, View, TouchableOpacity, Image, Alert, AsyncStorage} from 'react-native'
 import {connect} from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -33,7 +33,19 @@ class ProductDetailScreen extends Component {
     this.setState({quanlity, quanlity});
   }
 
+
+
   gotoCart = () => {
+
+    async () => {
+      try {
+        await AsyncStorage.setItem('@shoping_cart', '11111');
+      } catch (e) {
+
+      }
+    };
+
+
     const {navigate} = this.props.navigation;
     navigate('MainScreen', {tab: 'cart'})
   }
