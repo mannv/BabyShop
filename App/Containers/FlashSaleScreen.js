@@ -14,6 +14,7 @@ import ListFlashSale from './ListFlashSale'
 class FlashSaleScreen extends Component {
   render () {
     const {navigation} = this.props;
+    const navigate = navigation.navigate;
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
@@ -25,7 +26,7 @@ class FlashSaleScreen extends Component {
           </View>
         </View>
         <View style={styles.content}>
-          <ListFlashSale></ListFlashSale>
+          <ListFlashSale navigate={navigate}></ListFlashSale>
         </View>
       </View>
     )

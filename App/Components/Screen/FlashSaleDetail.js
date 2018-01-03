@@ -10,7 +10,8 @@ export default class FlashSaleDetail extends Component {
   }
 
   gotoDetail = (id) => {
-    Alert.alert(id.toString());
+    const {navigate} = this.props;
+    navigate('ProductDetailScreen', {id: id});
   }
 
   render () {

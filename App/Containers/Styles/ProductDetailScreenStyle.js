@@ -21,11 +21,45 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: Metrics.baseMargin
   },
-  categoryName: {
+  title: {
     ...Fonts.style.normal,
     flex: 11,
     color: Colors.snow,
     justifyContent: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+  },
+  image: {
+    width: Metrics.screenWidth,
+    height: Metrics.screenWidth,
+  },
+  productName: {
+    ...Fonts.style.normal
+  },
+  productInfoWapper: {
+    padding: Metrics.baseMargin,
+    backgroundColor: Colors.snow,
+    marginBottom: Metrics.baseMargin
+  },
+  oldPrice: {
+    ...Fonts.style.normal,
+    fontSize: Fonts.size.small,
+    color: Colors.gray,
+    textDecorationLine: 'line-through'
+  },
+  price: {
+    ...Fonts.style.normal,
+    color: Colors.organe
+  },
+  descriptionLabel: {
+    fontWeight: 'bold',
+    fontSize: Fonts.size.regular
+  },
+  descriptionWapper: {
+    backgroundColor: Colors.snow,
+    padding: Metrics.baseMargin
+  },
+  description: {
+    ...Fonts.style.normal,
+    textAlign: 'justify'
   }
 })

@@ -34,9 +34,8 @@ class ListFlashSale extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    return (
-      <FlashSaleDetail item={item}></FlashSaleDetail>
-    )
+    const {navigate} = this.props;
+    return <FlashSaleDetail navigate={navigate} item={item}></FlashSaleDetail>
   }
 
   /* ***********************************************************
@@ -90,7 +89,7 @@ class ListFlashSale extends React.PureComponent {
         <FlatList
           contentContainerStyle={styles.listContent}
           data={this.state.dataObjects}
-          renderItem={this.renderRow}
+          renderItem={(item) => this.renderRow(item)}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}

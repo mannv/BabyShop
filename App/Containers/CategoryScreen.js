@@ -13,6 +13,7 @@ import CategoryListView from './CategoryListView'
 class CategoryScreen extends Component {
   render() {
     const {navigation} = this.props;
+    const {navigate} = navigation;
     const {params} = this.props.navigation.state;
     return (
       <View style={styles.container}>
@@ -25,7 +26,7 @@ class CategoryScreen extends Component {
           </View>
         </View>
         <View style={styles.content}>
-          <CategoryListView></CategoryListView>
+          <CategoryListView navigate={navigate}></CategoryListView>
         </View>
       </View>
     )
