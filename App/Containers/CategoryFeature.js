@@ -64,7 +64,10 @@ class CategoryFeature extends React.PureComponent {
   oneScreensWorth = 20
 
   openCategoryList = () => {
-    Alert.alert(`open category screen: ${this.props.category.id}`);
+    const {category} = this.props;
+    const {navigate} = this.props;
+    category['feature'] = 1;
+    navigate('CategoryScreen', category);
   }
 
   render () {
@@ -72,7 +75,7 @@ class CategoryFeature extends React.PureComponent {
     return (
     <View style={styles.container}>
       <View style={styles.heading}>
-        <Text style={styles.title}>{category.title}</Text>
+        <Text style={styles.title}>{category.name}</Text>
         <TouchableOpacity onPress={() => this.openCategoryList()}>
           <Text style={styles.more}>{I18n.t('more')}</Text>
         </TouchableOpacity>

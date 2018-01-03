@@ -59,7 +59,7 @@ class HomeScreen extends Component {
     const data = [
       {
         id: 1,
-        title: 'Bé ăn - bé uống',
+        name: 'Bé ăn - bé uống',
         items: [
           {id: 4, price: '116000', uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'},
           {id: 1, price: '99000', uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'},
@@ -71,7 +71,7 @@ class HomeScreen extends Component {
       },
       {
         id: 2,
-        title: 'Vệ sinh cho bé',
+        name: 'Vệ sinh cho bé',
         items: [
           {id: 4, price: '220000', uri: 'https://k.r.worldssl.net/media/catalog/product/cache/1/small_image/200x/9df78eab33525d08d6e5fb8d27136e95/t/a/ta-bim-quan-merries-s62.jpg'},
           {id: 1, price: '99000', uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'},
@@ -83,7 +83,7 @@ class HomeScreen extends Component {
       },
       {
         id: 3,
-        title: 'Bé ra ngoài',
+        name: 'Bé ra ngoài',
         items: [
           {id: 4, price: '220000', uri: 'https://k.r.worldssl.net/media/catalog/product/cache/1/small_image/200x/9df78eab33525d08d6e5fb8d27136e95/x/e/xe-day-sieu-thi-co-to-668-14-3.jpg'},
           {id: 1, price: '99000', uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'},
@@ -95,7 +95,7 @@ class HomeScreen extends Component {
       },
       {
         id: 4,
-        title: 'Quần áo - thời trang',
+        name: 'Quần áo - thời trang',
         items: [
           {id: 4, price: '220000', uri: 'https://k.r.worldssl.net/media/catalog/product/cache/1/small_image/200x/9df78eab33525d08d6e5fb8d27136e95/a/o/ao-gile-phao-co-mu-dap-mat-gau-than-truoc-1.jpg'},
           {id: 1, price: '99000', uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'},
@@ -116,6 +116,7 @@ class HomeScreen extends Component {
   }
 
   render () {
+    const {navigate} = this.props;
     return (
       <View style={styles.mainContainer}>
         <View style={[styles.heading]}>
@@ -124,11 +125,11 @@ class HomeScreen extends Component {
         <View style={styles.sv}>
           <ScrollView>
             <MainSwiper items={this.state.swiperData}></MainSwiper>
-            <FlashSale items={this.state.flashSaleData}></FlashSale>
+            <FlashSale navigate={navigate} items={this.state.flashSaleData}></FlashSale>
             {
               this.state.categoryFeatureData.map((item, index) => {
                 return (
-                  <CategoryFeature category={item} key={index}></CategoryFeature>
+                  <CategoryFeature navigate={navigate} category={item} key={index}></CategoryFeature>
                 )
               })
             }

@@ -50,7 +50,7 @@ class MainScreen extends Component {
             renderSelectedIcon={() => this.renderIcon('home', true)}
             selected={this.state.selectedTab === 'home'}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            <HomeScreen openMenu={() => this.openControlPanel()}></HomeScreen>
+            <HomeScreen navigate={navigate} openMenu={() => this.openControlPanel()}></HomeScreen>
           </TabNavigator.Item>
           <TabNavigator.Item
             badgeText={1}

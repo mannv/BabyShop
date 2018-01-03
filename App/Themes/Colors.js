@@ -26,7 +26,8 @@ const colors = {
   blue: 'blue',
   gray: 'gray',
   organe: '#ff5722',
-  black: 'black'
+  black: 'black',
+  green: 'green'
 }
 
 export default colors

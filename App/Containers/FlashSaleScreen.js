@@ -1,20 +1,19 @@
-import React, {Component} from 'react'
-import {Text, TouchableOpacity, View} from 'react-native'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-import styles from './Styles/CategoryScreenStyle'
+import styles from './Styles/FlashSaleScreenStyle'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Metrics } from '../Themes'
-import CategoryListView from './CategoryListView'
+import I18n from '../I18n'
+import ListFlashSale from './ListFlashSale'
 
-class CategoryScreen extends Component {
-  render() {
+class FlashSaleScreen extends Component {
+  render () {
     const {navigation} = this.props;
-    const {params} = this.props.navigation.state;
-    console.log(params);
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
@@ -22,11 +21,11 @@ class CategoryScreen extends Component {
             <TouchableOpacity style={styles.touchIconBack} onPress={() => {navigation.goBack()}}>
               <Icon style={styles.iconBack} name='ios-arrow-back' size={Metrics.icons.medium} />
             </TouchableOpacity>
-            <Text style={styles.categoryName}>ID {params.name} -- {params.id} -- [{params.feature}]</Text>
+            <Text style={styles.title}>{I18n.t('flash_sale')}</Text>
           </View>
         </View>
         <View style={styles.content}>
-          <CategoryListView></CategoryListView>
+          <ListFlashSale></ListFlashSale>
         </View>
       </View>
     )
@@ -34,11 +33,13 @@ class CategoryScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(FlashSaleScreen)

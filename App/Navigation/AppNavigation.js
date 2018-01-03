@@ -1,4 +1,6 @@
 import { StackNavigator } from 'react-navigation'
+import ListFlashSale from '../Containers/ListFlashSale'
+import FlashSaleScreen from '../Containers/FlashSaleScreen'
 import CategoryScreen from '../Containers/CategoryScreen'
 import MainScreen from '../Containers/MainScreen'
 import RegisterScreen from '../Containers/RegisterScreen'
@@ -9,6 +11,8 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
+  ListFlashSale: { screen: ListFlashSale },
+  FlashSaleScreen: { screen: FlashSaleScreen },
   CategoryScreen: { screen: CategoryScreen },
   MainScreen: { screen: MainScreen },
   RegisterScreen: { screen: RegisterScreen },

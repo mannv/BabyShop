@@ -77,7 +77,8 @@ class FlashSale extends React.PureComponent {
   // )}
 
   openListFlashSave = () => {
-    Alert.alert('open list flash sale screen');
+    const {navigate} = this.props;
+    navigate('FlashSaleScreen');
   }
 
   render() {
