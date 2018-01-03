@@ -21,6 +21,13 @@ class MainScreen extends Component {
     };
   }
 
+  componentWillMount() {
+    const {params} = this.props.navigation.state;
+    if(params != undefined && params.tab) {
+      this.setState({selectedTab: params.tab});
+    }
+  }
+
   closeControlPanel = () => {
     this._drawer.close()
   };
@@ -31,7 +38,7 @@ class MainScreen extends Component {
   renderIcon = (iconName, selected = false) => {
     const color = selected ? Colors.organe : Colors.gray;
     return (
-      <Icon style={{color: color}} name={iconName} size={Metrics.icons.medium}/>
+      <Icon style={{color: color}} name={iconName} size={Metrics.icons.nav}/>
     )
   }
 

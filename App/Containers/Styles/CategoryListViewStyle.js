@@ -26,6 +26,7 @@ export default StyleSheet.create({
     ...Fonts.style.normal
   },
   price: {
+    ...Fonts.style.normal,
     color: Colors.organe
   }
 })

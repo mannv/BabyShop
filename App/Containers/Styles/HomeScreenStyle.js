@@ -9,7 +9,6 @@ export default StyleSheet.create({
     backgroundColor: Colors.organe
   },
   sv: {
-    flex: 14,
-    backgroundColor: Colors.gray
+    flex: 14
   }
 })

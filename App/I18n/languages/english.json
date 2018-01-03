@@ -39,5 +39,6 @@
   "more": "more...",
   "close": "Close",
   "list_category":"List category",
-  "register_date":"Register date: {{date}}"
+  "register_date":"Register date: {{date}}",
+  "add_to_cart":"Add to cart"
 }

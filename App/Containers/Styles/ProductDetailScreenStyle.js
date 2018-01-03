@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Colors, Fonts, Metrics } from '../../Themes/'
-
+const bottomHeight = Metrics.screenHeight / 15;
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
@@ -61,5 +61,40 @@ export default StyleSheet.create({
   description: {
     ...Fonts.style.normal,
     textAlign: 'justify'
+  },
+  addToCart: {
+    ...ApplicationStyles.screen.padding_lr,
+    height: bottomHeight,
+    backgroundColor: '#fff3ef',
+    flexDirection: 'row'
+  },
+  plusIcon: {
+    alignSelf: 'center'
+  },
+  minusIcon: {
+    alignSelf: 'center'
+  },
+  quanlity: {
+    ...Fonts.style.normal,
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: Colors.border,
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  shoppingCartIcon: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    position: 'absolute',
+    right: Metrics.baseMargin
+  },
+  label_add_to_cart: {
+    ...Fonts.style.normal,
+  },
+  icon_add_to_cart: {
+    alignSelf: 'center',
+    paddingRight: Metrics.baseMargin
   }
 })
