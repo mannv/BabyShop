@@ -25,7 +25,8 @@ class FlashSale extends React.PureComponent {
    return <MyCustomCell title={item.title} description={item.description} />
    *************************************************************/
   renderRow({item}) {
-    return <FlashSaveItem item={item}></FlashSaveItem>
+    const {navigate} = this.props;
+    return <FlashSaveItem navigate={navigate} item={item}></FlashSaveItem>
   }
 
   /* ***********************************************************
@@ -96,7 +97,7 @@ class FlashSale extends React.PureComponent {
           horizontal={true}
           contentContainerStyle={styles.listContent}
           data={items}
-          renderItem={this.renderRow}
+          renderItem={(item) => this.renderRow(item)}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}

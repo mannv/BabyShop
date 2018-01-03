@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
-import {View, Text, Image, TouchableOpacity, Alert} from 'react-native'
+import {View, Text, Image, TouchableOpacity} from 'react-native'
 import styles from '../Styles/FlashSaveItemStyle'
 
 export default class FlashSaveItem extends Component {
@@ -21,7 +21,8 @@ export default class FlashSaveItem extends Component {
   }
 
   openProjectDetail = () => {
-    Alert.alert(`Open product detail ID: ${this.props.item.id}`);
+    const {navigate} = this.props;
+    navigate('ProductDetailScreen', {id: this.props.item.id});
   }
 
   render() {

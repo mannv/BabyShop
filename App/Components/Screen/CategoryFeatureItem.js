@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
-import {View, Text, TouchableOpacity, Alert, Image} from 'react-native'
+import {View, Text, TouchableOpacity, Image} from 'react-native'
 import styles from '../Styles/CategoryFeatureItemStyle'
 
 export default class CategoryFeatureItem extends Component {
@@ -20,7 +20,8 @@ export default class CategoryFeatureItem extends Component {
   }
 
   openProjectDetail = () => {
-    Alert.alert(`Open product detail ID: ${this.props.item.id}`);
+    const {navigate} = this.props;
+    navigate('ProductDetailScreen', {id: this.props.item.id});
   }
 
   render() {

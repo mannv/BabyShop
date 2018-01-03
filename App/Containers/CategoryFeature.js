@@ -28,7 +28,8 @@ class CategoryFeature extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    return <CategoryFeatureItem item={item}></CategoryFeatureItem>
+    const {navigate} = this.props;
+    return <CategoryFeatureItem navigate={navigate} item={item}></CategoryFeatureItem>
   }
 
   /* ***********************************************************
@@ -85,7 +86,7 @@ class CategoryFeature extends React.PureComponent {
         horizontal={true}
         contentContainerStyle={styles.listContent}
         data={category.items}
-        renderItem={this.renderRow}
+        renderItem={(item) => this.renderRow(item)}
         keyExtractor={this.keyExtractor}
         initialNumToRender={this.oneScreensWorth}
         ListHeaderComponent={this.renderHeader}

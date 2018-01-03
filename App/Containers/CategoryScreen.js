@@ -14,7 +14,6 @@ class CategoryScreen extends Component {
   render() {
     const {navigation} = this.props;
     const {params} = this.props.navigation.state;
-    console.log(params);
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
