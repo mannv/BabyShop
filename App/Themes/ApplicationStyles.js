@@ -63,7 +63,11 @@ const ApplicationStyles = {
     padding_lr: {
       paddingLeft: Metrics.baseMargin,
       paddingRight: Metrics.baseMargin
-    }
+    },
+    padding_tb: {
+      paddingTop: Metrics.baseMargin,
+      paddingBottom: Metrics.baseMargin
+    },
   },
   darkLabelContainer: {
     padding: Metrics.smallMargin,

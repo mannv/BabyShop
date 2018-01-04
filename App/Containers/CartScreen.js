@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, AsyncStorage } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
 import styles from './Styles/CartScreenStyle'
-
+import CartList from './CartList'
 class CartScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    }
+  }
+
+  componentDidMount() {
+
+  }
+
   render () {
-    const cart = async () => {
-      try {
-        const value = await AsyncStorage.getItem('@shoping_cart');
-        return value;
-      } catch (error) {
-        return '';
-      }
-    };
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>{cart}</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <View style={styles.container}>
+        <CartList items={items}></CartList>
+      </View>
     )
   }
 }

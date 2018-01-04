@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ScrollView, Text, View, TouchableOpacity, Image, Alert, AsyncStorage} from 'react-native'
+import {ScrollView, Text, View, TouchableOpacity, Image, Alert} from 'react-native'
 import {connect} from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -16,36 +16,26 @@ class ProductDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quanlity: 1,
+      amount: 1,
     }
   }
 
-  changeQuanlity = (add = true) => {
-    let {quanlity} = this.state;
+  changeAmount = (add = true) => {
+    let {amount} = this.state;
     if (add == true) {
-      quanlity++;
+      amount++;
     } else {
-      quanlity--;
+      amount--;
     }
-    if (quanlity < 1) {
-      quanlity = 1;
+    if (amount < 1) {
+      amount = 1;
     }
-    this.setState({quanlity, quanlity});
+    this.setState({amount, amount});
   }
 
 
 
-  gotoCart = () => {
-
-    async () => {
-      try {
-        await AsyncStorage.setItem('@shoping_cart', '11111');
-      } catch (e) {
-
-      }
-    };
-
-
+  gotoCart = (id) => {
     const {navigate} = this.props.navigation;
     navigate('MainScreen', {tab: 'cart'})
   }
@@ -54,6 +44,7 @@ class ProductDetailScreen extends Component {
     const {navigation} = this.props;
     const {params} = this.props.navigation.state;
     const item = {
+      id: 1,
       name: "Giày Lười Mẫu Mới Loại 1 - kèm feedback của khách",
       oldPrice: 100000,
       price: 80000,
@@ -104,15 +95,15 @@ class ProductDetailScreen extends Component {
             </View>
           </ScrollView>
           <View style={styles.addToCart}>
-            <TouchableOpacity style={styles.minusIcon} onPress={() => this.changeQuanlity(false)}>
+            <TouchableOpacity style={styles.minusIcon} onPress={() => this.changeAmount(false)}>
               <FontAwesome name='minus' size={Metrics.icons.small}/>
             </TouchableOpacity>
-            <Text style={styles.quanlity}>{this.state.quanlity}</Text>
-            <TouchableOpacity style={styles.plusIcon} onPress={() => this.changeQuanlity(true)}>
+            <Text style={styles.amount}>{this.state.amount}</Text>
+            <TouchableOpacity style={styles.plusIcon} onPress={() => this.changeAmount(true)}>
               <FontAwesome name='plus' size={Metrics.icons.small}/>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.shoppingCartIcon} onPress={() => this.gotoCart()}>
+            <TouchableOpacity style={styles.shoppingCartIcon} onPress={() => this.gotoCart(item.id)}>
               <FontAwesome style={styles.icon_add_to_cart} name='shopping-cart' size={Metrics.icons.small}/>
               <Text style={styles.label_add_to_cart}>{I18n.t('add_to_cart')}</Text>
             </TouchableOpacity>
