@@ -13,6 +13,8 @@ import Swiper from 'react-native-swiper'
 import I18n from '../I18n'
 
 import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
+import {addToCart} from '../Redux/Actions/CartAction'
+
 
 class ProductDetailScreen extends Component {
   constructor(props) {
@@ -42,6 +44,8 @@ class ProductDetailScreen extends Component {
 
 
   gotoCart = (id) => {
+    console.log('Add to card: ' + JSON.stringify({id: id, amount: this.state.amount}));
+    this.props.addToCart(id, this.state.amount);
     const {navigate} = this.props.navigation;
     navigate('MainScreen', {tab: 'cart'})
   }
@@ -50,7 +54,7 @@ class ProductDetailScreen extends Component {
     const {navigation} = this.props;
     const {params} = this.props.navigation.state;
     const item = {
-      id: 1,
+      id: params.id,
       name: "Giày Lười Mẫu Mới Loại 1 - kèm feedback của khách",
       oldPrice: 100000,
       price: 80000,
@@ -125,4 +129,6 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, {setCurrentNavigation})(ProductDetailScreen)
+export default connect(mapStateToProps, {
+  setCurrentNavigation
+})(ProductDetailScreen)

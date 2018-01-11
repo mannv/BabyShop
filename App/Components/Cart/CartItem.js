@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import {View, Text, Image, TouchableOpacity} from 'react-native'
 import styles from './CartItemStyle'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {Metrics} from '../../Themes'
 
-export default class CartItem extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
+import {increase, decrease, deleteProduct, emptyCart} from '../../Redux/Actions/CartAction'
+import {connect} from 'react-redux'
+class CartItem extends Component {
   // Defaults for props
   static defaultProps = {
     item: {}
@@ -20,29 +16,39 @@ export default class CartItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: 1
+      amount: 0
     }
   }
 
   changeAmount = (add = true) => {
-    let {amount} = this.state;
+    const {item} = this.props;
     if (add == true) {
-      amount++;
+      this.props.increase(item.id);
     } else {
-      amount--;
+      this.props.decrease(item.id);
     }
-    if (amount < 1) {
-      amount = 1;
-    }
-    this.setState({amount, amount});
   }
 
-  render () {
+
+  componentDidMount() {
+    const {item, cart} = this.props;
+    if(cart != undefined) {
+      let cartItem = cart.find((a) => {
+        return a.id == item.id;
+      });
+      if (cartItem != undefined) {
+        this.setState({amount: cartItem.amount});
+      }
+    }
+  }
+
+
+  render() {
     const {item} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.thumbnail}>
-          <Image source={{uri: item.thumbnail}} style={styles.img} />
+          <Image source={{uri: item.thumbnail}} style={styles.img}/>
         </View>
         <View style={styles.info}>
           <Text style={styles.name}>{item.name}</Text>
@@ -67,3 +73,11 @@ export default class CartItem extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart
+  }
+}
+
+export default connect(mapStateToProps, {increase, decrease, deleteProduct, emptyCart})(CartItem);

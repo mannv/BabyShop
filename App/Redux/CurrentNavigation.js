@@ -6,7 +6,6 @@ import {CURRENT_NAVIGATION} from './Actions/NavigationAction'
 
 export const reducer = (state = {}, action) => {
   if (action.type == CURRENT_NAVIGATION) {
-    console.log('set current navigation');
     return {
       ...state,
       navigation: action.navigation

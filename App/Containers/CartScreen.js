@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 // Styles
 import styles from './Styles/CartScreenStyle'
 import CartList from './CartList'
+
 class CartScreen extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,8 @@ class CartScreen extends Component {
   }
 
   componentDidMount() {
-
+    console.log('cart');
+    console.log(this.props.cart);
   }
 
   render () {
@@ -30,12 +32,9 @@ class CartScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    cart: state.cart.cart,
+    demo: state.cart.demo,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartScreen)
+export default connect(mapStateToProps)(CartScreen)

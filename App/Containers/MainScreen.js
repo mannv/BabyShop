@@ -24,6 +24,15 @@ class MainScreen extends Component {
 
   componentWillMount() {
     this.props.setCurrentNavigation(this.props.navigation);
+    this.selectedTab();
+  }
+
+  selectedTab() {
+    const {state} = this.props.navigation;
+    if (state.hasOwnProperty('params')) {
+      const {params} = state;
+      this.setState({selectedTab: params.tab});
+    }
   }
 
   closeControlPanel = () => {
@@ -46,7 +55,7 @@ class MainScreen extends Component {
 
       <Drawer openDrawerOffset={0.2} tapToClose
               ref={(ref) => this._drawer = ref}
-              content={<ControlPanel closeMenu={() => this.closeControlPanel()} />}
+              content={<ControlPanel closeMenu={() => this.closeControlPanel()}/>}
       >
 
         <TabNavigator>
@@ -54,7 +63,7 @@ class MainScreen extends Component {
             renderIcon={() => this.renderIcon('home')}
             renderSelectedIcon={() => this.renderIcon('home', true)}
             selected={this.state.selectedTab === 'home'}
-            onPress={() => this.setState({ selectedTab: 'home' })}>
+            onPress={() => this.setState({selectedTab: 'home'})}>
             <HomeScreen openMenu={() => this.openControlPanel()}></HomeScreen>
           </TabNavigator.Item>
           <TabNavigator.Item
@@ -62,14 +71,14 @@ class MainScreen extends Component {
             renderIcon={() => this.renderIcon('shopping-cart')}
             renderSelectedIcon={() => this.renderIcon('shopping-cart', true)}
             selected={this.state.selectedTab === 'cart'}
-            onPress={() => this.setState({ selectedTab: 'cart' })}>
+            onPress={() => this.setState({selectedTab: 'cart'})}>
             <CartScreen></CartScreen>
           </TabNavigator.Item>
           <TabNavigator.Item
             renderIcon={() => this.renderIcon('user')}
             renderSelectedIcon={() => this.renderIcon('user', true)}
             selected={this.state.selectedTab === 'profile'}
-            onPress={() => this.setState({ selectedTab: 'profile' })}>
+            onPress={() => this.setState({selectedTab: 'profile'})}>
             <ProfileScreen></ProfileScreen>
           </TabNavigator.Item>
         </TabNavigator>
