@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import styles from './CategoryPanelStyle'
 import I18n from '../../I18n'
-export default class CategoryPanel extends Component {
+import {connect} from 'react-redux'
+class CategoryPanel extends Component {
   // Defaults for props
   static defaultProps = {
     items: [{
@@ -36,3 +37,8 @@ export default class CategoryPanel extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {navigation: state.navigate.navigation}
+}
+
+export default connect(mapStateToProps)(CategoryPanel)

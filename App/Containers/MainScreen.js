@@ -11,21 +11,19 @@ import HomeScreen from './HomeScreen'
 import ProfileScreen from './ProfileScreen'
 import CartScreen from './CartScreen'
 import {Metrics, Colors} from '../Themes'
+import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 
 class MainScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'cart'
+      selectedTab: 'home'
     };
   }
 
   componentWillMount() {
-    const {params} = this.props.navigation.state;
-    if(params != undefined && params.tab) {
-      this.setState({selectedTab: params.tab});
-    }
+    this.props.setCurrentNavigation(this.props.navigation);
   }
 
   closeControlPanel = () => {
@@ -48,7 +46,7 @@ class MainScreen extends Component {
 
       <Drawer openDrawerOffset={0.2} tapToClose
               ref={(ref) => this._drawer = ref}
-              content={<ControlPanel navigate={navigate} closeMenu={() => this.closeControlPanel()} />}
+              content={<ControlPanel closeMenu={() => this.closeControlPanel()} />}
       >
 
         <TabNavigator>
@@ -57,7 +55,7 @@ class MainScreen extends Component {
             renderSelectedIcon={() => this.renderIcon('home', true)}
             selected={this.state.selectedTab === 'home'}
             onPress={() => this.setState({ selectedTab: 'home' })}>
-            <HomeScreen navigate={navigate} openMenu={() => this.openControlPanel()}></HomeScreen>
+            <HomeScreen openMenu={() => this.openControlPanel()}></HomeScreen>
           </TabNavigator.Item>
           <TabNavigator.Item
             badgeText={1}
@@ -84,8 +82,4 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)
+export default connect(mapStateToProps, {setCurrentNavigation})(MainScreen)

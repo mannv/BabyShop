@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native'
 import styles from './FlashSaleDetailStyle'
-
-export default class FlashSaleDetail extends Component {
+import { connect } from 'react-redux'
+class FlashSaleDetail extends Component {
   // Defaults for props
   static defaultProps = {
     item: {}
   }
 
   gotoDetail = (id) => {
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     navigate('ProductDetailScreen', {id: id});
   }
 
@@ -33,3 +33,9 @@ export default class FlashSaleDetail extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {navigation: state.navigate.navigation}
+}
+
+export default connect(mapStateToProps)(FlashSaleDetail)

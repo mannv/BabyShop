@@ -7,12 +7,12 @@ import CategoryPanel from './CategoryPanel'
 
 import RoundedButton from '../RoundedButton'
 import I18n from '../../I18n'
+import {connect} from 'react-redux'
 
-export default class ControlPanel extends Component {
+class ControlPanel extends Component {
   // Defaults for props
   static defaultProps = {
-    closeMenu: PropTypes.func,
-    navigate: null,
+    closeMenu: PropTypes.func
   }
 
   render() {
@@ -37,7 +37,7 @@ export default class ControlPanel extends Component {
         </View>
         <View style={{flex: 9}}>
           <ScrollView>
-            <CategoryPanel navigate={this.props.navigate} items={cateItems}></CategoryPanel>
+            <CategoryPanel items={cateItems}></CategoryPanel>
           </ScrollView>
         </View>
         <View style={[{flex: 1}, styles.footer]}>
@@ -47,3 +47,8 @@ export default class ControlPanel extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default connect(mapStateToProps)(ControlPanel)

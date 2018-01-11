@@ -34,8 +34,7 @@ class ListFlashSale extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    const {navigate} = this.props;
-    return <FlashSaleDetail navigate={navigate} item={item}></FlashSaleDetail>
+    return <FlashSaleDetail item={item}></FlashSaleDetail>
   }
 
   /* ***********************************************************
@@ -103,14 +102,7 @@ class ListFlashSale extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    // ...redux state to props here
-  }
+  return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListFlashSale)
+export default connect(mapStateToProps)(ListFlashSale)

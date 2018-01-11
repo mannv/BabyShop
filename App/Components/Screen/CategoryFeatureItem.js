@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
 import {View, Text, TouchableOpacity, Image} from 'react-native'
 import styles from '../Styles/CategoryFeatureItemStyle'
+import {connect} from 'react-redux'
 
-export default class CategoryFeatureItem extends Component {
+class CategoryFeatureItem extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
@@ -20,7 +21,7 @@ export default class CategoryFeatureItem extends Component {
   }
 
   openProjectDetail = () => {
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     navigate('ProductDetailScreen', {id: this.props.item.id});
   }
 
@@ -34,3 +35,11 @@ export default class CategoryFeatureItem extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    navigation: state.navigate.navigation
+  }
+}
+
+export default connect(mapStateToProps)(CategoryFeatureItem)

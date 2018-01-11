@@ -116,7 +116,7 @@ class HomeScreen extends Component {
   }
 
   render () {
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
         <View style={[styles.heading]}>
@@ -125,11 +125,11 @@ class HomeScreen extends Component {
         <View style={styles.sv}>
           <ScrollView>
             <MainSwiper items={this.state.swiperData}></MainSwiper>
-            <FlashSale navigate={navigate} items={this.state.flashSaleData}></FlashSale>
+            <FlashSale items={this.state.flashSaleData}></FlashSale>
             {
               this.state.categoryFeatureData.map((item, index) => {
                 return (
-                  <CategoryFeature navigate={navigate} category={item} key={index}></CategoryFeature>
+                  <CategoryFeature category={item} key={index}></CategoryFeature>
                 )
               })
             }
@@ -142,13 +142,7 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-  }
+  return {navigation: state.navigate.navigation}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps)(HomeScreen)

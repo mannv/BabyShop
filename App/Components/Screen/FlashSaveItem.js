@@ -3,7 +3,9 @@ import React, {Component} from 'react'
 import {View, Text, Image, TouchableOpacity} from 'react-native'
 import styles from '../Styles/FlashSaveItemStyle'
 
-export default class FlashSaveItem extends Component {
+import {connect} from 'react-redux'
+
+class FlashSaveItem extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
@@ -21,7 +23,7 @@ export default class FlashSaveItem extends Component {
   }
 
   openProjectDetail = () => {
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     navigate('ProductDetailScreen', {id: this.props.item.id});
   }
 
@@ -38,3 +40,11 @@ export default class FlashSaveItem extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    navigation: state.navigate.navigation
+  }
+}
+
+export default connect(mapStateToProps)(FlashSaveItem);

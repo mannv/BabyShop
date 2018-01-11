@@ -13,9 +13,7 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  CartList: { screen: CartList },
   ProductDetailScreen: { screen: ProductDetailScreen },
-  ListFlashSale: { screen: ListFlashSale },
   FlashSaleScreen: { screen: FlashSaleScreen },
   CategoryScreen: { screen: CategoryScreen },
   MainScreen: { screen: MainScreen },

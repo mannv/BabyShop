@@ -9,8 +9,13 @@ import styles from './Styles/CategoryScreenStyle'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Metrics } from '../Themes'
 import CategoryListView from './CategoryListView'
+import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 
 class CategoryScreen extends Component {
+  componentDidMount() {
+    this.props.setCurrentNavigation(this.props.navigation);
+  }
+
   render() {
     const {navigation} = this.props;
     const {navigate} = navigation;
@@ -26,7 +31,7 @@ class CategoryScreen extends Component {
           </View>
         </View>
         <View style={styles.content}>
-          <CategoryListView navigate={navigate}></CategoryListView>
+          <CategoryListView></CategoryListView>
         </View>
       </View>
     )
@@ -36,9 +41,4 @@ class CategoryScreen extends Component {
 const mapStateToProps = (state) => {
   return {}
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen)
+export default connect(mapStateToProps, {setCurrentNavigation})(CategoryScreen)

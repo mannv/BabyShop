@@ -25,8 +25,7 @@ class FlashSale extends React.PureComponent {
    return <MyCustomCell title={item.title} description={item.description} />
    *************************************************************/
   renderRow({item}) {
-    const {navigate} = this.props;
-    return <FlashSaveItem navigate={navigate} item={item}></FlashSaveItem>
+    return <FlashSaveItem item={item}></FlashSaveItem>
   }
 
   /* ***********************************************************
@@ -78,7 +77,7 @@ class FlashSale extends React.PureComponent {
   // )}
 
   openListFlashSave = () => {
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     navigate('FlashSaleScreen');
   }
 
@@ -112,12 +111,7 @@ class FlashSale extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    navigation: state.navigate.navigation
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FlashSale)
+export default connect(mapStateToProps)(FlashSale)

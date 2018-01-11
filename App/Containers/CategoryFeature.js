@@ -28,8 +28,7 @@ class CategoryFeature extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    const {navigate} = this.props;
-    return <CategoryFeatureItem navigate={navigate} item={item}></CategoryFeatureItem>
+    return <CategoryFeatureItem item={item}></CategoryFeatureItem>
   }
 
   /* ***********************************************************
@@ -66,7 +65,7 @@ class CategoryFeature extends React.PureComponent {
 
   openCategoryList = () => {
     const {category} = this.props;
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     category['feature'] = 1;
     navigate('CategoryScreen', category);
   }
@@ -101,13 +100,8 @@ class CategoryFeature extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    navigation: state.navigate.navigation
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryFeature)
+export default connect(mapStateToProps)(CategoryFeature)

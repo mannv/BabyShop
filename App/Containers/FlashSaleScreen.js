@@ -11,7 +11,12 @@ import { Metrics } from '../Themes'
 import I18n from '../I18n'
 import ListFlashSale from './ListFlashSale'
 
+import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
+
 class FlashSaleScreen extends Component {
+  componentDidMount() {
+    this.props.setCurrentNavigation(this.props.navigation);
+  }
   render () {
     const {navigation} = this.props;
     const navigate = navigation.navigate;
@@ -26,7 +31,7 @@ class FlashSaleScreen extends Component {
           </View>
         </View>
         <View style={styles.content}>
-          <ListFlashSale navigate={navigate}></ListFlashSale>
+          <ListFlashSale></ListFlashSale>
         </View>
       </View>
     )
@@ -37,10 +42,4 @@ const mapStateToProps = (state) => {
   return {
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FlashSaleScreen)
+export default connect(mapStateToProps, {setCurrentNavigation})(FlashSaleScreen)

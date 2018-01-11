@@ -115,7 +115,7 @@ class CategoryListView extends React.PureComponent {
   }
 
   gotoDetail = (id) => {
-    const {navigate} = this.props;
+    const {navigate} = this.props.navigation;
     navigate('ProductDetailScreen', {id: id});
   }
 
@@ -205,12 +205,8 @@ class CategoryListView extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    navigation: state.navigate.navigation
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryListView)
+export default connect(mapStateToProps)(CategoryListView)

@@ -12,6 +12,8 @@ import {Metrics} from '../Themes'
 import Swiper from 'react-native-swiper'
 import I18n from '../I18n'
 
+import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
+
 class ProductDetailScreen extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,10 @@ class ProductDetailScreen extends Component {
     this.setState({amount, amount});
   }
 
+
+  componentDidMount() {
+    this.props.setCurrentNavigation(this.props.navigation);
+  }
 
 
   gotoCart = (id) => {
@@ -119,8 +125,4 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailScreen)
+export default connect(mapStateToProps, {setCurrentNavigation})(ProductDetailScreen)

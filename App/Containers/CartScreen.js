@@ -22,7 +22,7 @@ class CartScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <CartList items={items}></CartList>
+        <CartList items={this.state.items}></CartList>
       </View>
     )
   }
