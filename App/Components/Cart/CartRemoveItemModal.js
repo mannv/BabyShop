@@ -5,8 +5,8 @@ import {View, Text, TouchableOpacity, Modal} from 'react-native'
 import styles from './CartRemoveItemModalStyle'
 import I18n from '../../I18n'
 import {connect} from 'react-redux'
-import {deleteCartItem, deleteCartItemCancel} from '../../Redux/Actions/PopupAction'
-import {deleteProduct} from '../../Redux/Actions/CartAction'
+import {deleteCartItemCancel} from '../../Redux/Actions/PopupAction'
+import {deleteProduct, emptyCart} from '../../Redux/Actions/CartAction'
 class CartRemoveItemModal extends Component {
   // // Prop type warnings
   // static propTypes = {
@@ -21,7 +21,13 @@ class CartRemoveItemModal extends Component {
 
   removeCartItem = () => {
     const {id} = this.props.config;
-    this.props.deleteProduct(id);
+    if (id == 0) {
+      //empty cart
+      this.props.emptyCart();
+    } else {
+      //delete product with id
+      this.props.deleteProduct(id);
+    }
     this.props.deleteCartItemCancel();
   }
 
@@ -63,4 +69,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {deleteCartItem, deleteCartItemCancel, deleteProduct})(CartRemoveItemModal)
+export default connect(mapStateToProps, {deleteCartItemCancel, deleteProduct, emptyCart})(CartRemoveItemModal)

@@ -5,7 +5,7 @@ import styles from './CartItemStyle'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {Metrics} from '../../Themes'
 
-import {increase, decrease, deleteProduct, emptyCart} from '../../Redux/Actions/CartAction'
+import {increase, decrease} from '../../Redux/Actions/CartAction'
 import {deleteCartItem} from '../../Redux/Actions/PopupAction'
 import {connect} from 'react-redux'
 class CartItem extends Component {
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {increase, decrease, deleteProduct, emptyCart, deleteCartItem})(CartItem);
+export default connect(mapStateToProps, {increase, decrease, deleteCartItem})(CartItem);

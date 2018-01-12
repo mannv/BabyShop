@@ -43,5 +43,8 @@
   "add_to_cart":"Add to cart",
   "btn_yes":"Yes",
   "btn_no":"No",
-  "are_you_sure":"Are you sure?"
+  "are_you_sure":"Are you sure?",
+  "cart_title":"Cart detail",
+  "total_price":"Total price",
+  "btn_check_out":"Check out"
 }
