@@ -17,3 +17,17 @@ export function deleteCartItemCancel() {
   }
 }
 
+export const SHOW_POPUP_WAITING = 'SHOW_POPUP_WAITING'
+export const HIDE_POPUP_WAITING = 'HIDE_POPUP_WAITING'
+
+export function showWaiting() {
+  return {
+    type: SHOW_POPUP_WAITING
+  }
+}
+
+export function hideWaiting() {
+  return {
+    type: HIDE_POPUP_WAITING
+  }
+}

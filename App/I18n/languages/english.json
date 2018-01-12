@@ -46,5 +46,6 @@
   "are_you_sure":"Are you sure?",
   "cart_title":"Cart detail",
   "total_price":"Total price",
-  "btn_check_out":"Check out"
+  "btn_check_out":"Check out",
+  "please_waiting":"Waiting..."
 }
