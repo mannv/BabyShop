@@ -13,6 +13,8 @@ import CartScreen from './CartScreen'
 import {Metrics, Colors} from '../Themes'
 import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 
+import Config from 'react-native-config'
+
 class MainScreen extends Component {
 
   constructor(props) {
@@ -23,6 +25,7 @@ class MainScreen extends Component {
   }
 
   componentWillMount() {
+    console.log('API_URL: ' + Config.API_URL);
     this.props.setCurrentNavigation(this.props.navigation);
     this.selectedTab();
   }
