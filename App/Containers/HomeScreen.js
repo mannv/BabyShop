@@ -12,8 +12,11 @@ import CategoryFeature from './CategoryFeature'
 // Styles
 import styles from './Styles/HomeScreenStyle'
 
-class HomeScreen extends Component {
+import API from '../Services/Api'
+import {NONE} from 'apisauce'
 
+class HomeScreen extends Component {
+  api = {};
   constructor(props) {
     super(props);
     this.state = {
@@ -21,24 +24,17 @@ class HomeScreen extends Component {
       flashSaleData: [],
       categoryFeatureData: []
     }
+    this.api = API.create();
   }
 
   loadSwiperData() {
-    this.setState({
-      swiperData: [
-        {
-          uri: 'http://cf.shopee.vn/file/6fee4ee17e49441b24fd774ed9330fcc',
-          id: 2,
-        },
-        {
-          uri: 'https://cf.shopee.vn/file/c97608c924754e3304e8ea20d46d6ad8',
-          id: 3,
-        },
-        {
-          uri: 'https://cf.shopee.vn/file/c970fc5bd09fc45744e56be0aae62a00',
-          id: 1,
-        }
-      ]
+    this.api['banners'].apply(this).then((result) => {
+      if(result.problem != NONE) {
+        console.log('Error: ' + JSON.stringify(result.data));
+      } else {
+        console.log('FETCH DONE');
+        this.setState({swiperData: result.data.data});
+      }
     });
   }
 
@@ -110,9 +106,10 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
+
     this.loadSwiperData();
-    this.loadFlashSaleData();
-    this.loadCategoryFeatureData();
+    // this.loadFlashSaleData();
+    // this.loadCategoryFeatureData();
   }
 
   render () {

@@ -16,20 +16,27 @@ export default class MainSwiper extends Component {
 
   render() {
     const {items} = this.props;
-    const swiperWidth = global.getImageHeight(Metrics.screenWidth, 1242, 373);
-    return (
-      <Swiper autoplay={false} height={swiperWidth} paginationStyle={{bottom: 10}}
-              activeDotStyle={{backgroundColor: '#ff5722'}} showsButtons={false}>
-        {
-          items.map((item, index) => {
-            return (
-              <TouchableOpacity key={index} onPress={() => this.clickBanner(item.id)}>
-                <Image style={styles.img} source={{uri: item.uri}}/>
-              </TouchableOpacity>
-            )
-          })
-        }
-      </Swiper>
-    )
+    const swiperHeight = global.getImageHeight(Metrics.screenWidth, 375, 113);
+    console.log(`w: ${Metrics.screenWidth} h: ${swiperHeight}`);
+    if(items.length > 0) {
+      return (
+        <Swiper autoplay={true} height={swiperHeight} paginationStyle={{bottom: 10}}
+                activeDotStyle={{backgroundColor: '#ff5722'}} showsButtons={false}>
+          {
+            items.map((item, index) => {
+              return (
+                <TouchableOpacity key={index} onPress={() => this.clickBanner(item.name)}>
+                  <Image style={styles.img} source={{uri: item.image}}/>
+                </TouchableOpacity>
+              )
+            })
+          }
+        </Swiper>
+      )
+    } else {
+      return (
+        <View style={{width: Metrics.screenWidth, height: swiperHeight}}></View>
+      )
+    }
   }
 }
