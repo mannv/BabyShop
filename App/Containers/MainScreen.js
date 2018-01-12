@@ -18,7 +18,7 @@ class MainScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'cart'
+      selectedTab: 'home'
     };
   }
 
@@ -31,7 +31,9 @@ class MainScreen extends Component {
     const {state} = this.props.navigation;
     if (state.hasOwnProperty('params')) {
       const {params} = state;
-      this.setState({selectedTab: params.tab});
+      if(params != undefined && params.hasOwnProperty('tab')) {
+        this.setState({selectedTab: params.tab});
+      }
     }
   }
 

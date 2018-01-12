@@ -11,7 +11,7 @@ import CartRemoveItemModal from '../Components/Cart/CartRemoveItemModal'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {Metrics} from '../Themes'
 import I18n from '../I18n'
-import {deleteCartItem, showWaiting} from '../Redux/Actions/PopupAction'
+import {deleteCartItem, showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
 import PopupWaiting from '../Components/PopupWaiting'
 class CartScreen extends Component {
   constructor(props) {
@@ -27,8 +27,11 @@ class CartScreen extends Component {
   }
 
   checkOut = () => {
-    console.log('Check out');
     this.props.showWaiting();
+    setTimeout(() => {
+      this.props.hideWaiting();
+      this.props.navigation.navigate('CheckOutScreen');
+    }, 5000);
   }
 
   render() {
@@ -57,7 +60,7 @@ class CartScreen extends Component {
           </View>
         </View>
         <CartRemoveItemModal config={deleteCart}></CartRemoveItemModal>
-        <PopupWaiting visible={this.props.waiting} />
+        <PopupWaiting visible={this.props.waiting}/>
       </View>
     )
   }
@@ -68,7 +71,8 @@ const mapStateToProps = (state) => {
     cart: state.cart.cart,
     deleteCart: state.popup.deleteCartItem,
     waiting: state.popup.waiting,
+    navigation: state.navigate.navigation
   }
 }
 
-export default connect(mapStateToProps, {deleteCartItem, showWaiting})(CartScreen)
+export default connect(mapStateToProps, {deleteCartItem, showWaiting, hideWaiting})(CartScreen)
