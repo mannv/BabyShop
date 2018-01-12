@@ -16,7 +16,7 @@ class CategoryPanel extends Component {
   }
 
   selectedCategory = (item) => {
-    this.props.navigate('CategoryScreen', item);
+    this.props.navigation.navigate('CategoryScreen', item);
   }
 
   render () {

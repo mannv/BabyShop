@@ -15,7 +15,7 @@ export default class MainHeadingSearch extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.iconTouchable} onPress={this.props.openMenu}>
-          <Icon name='ios-menu' size={Metrics.icons.medium * Metrics.fontScale} color='white'/>
+          <Icon name='ios-menu' size={Metrics.icons.medium} color='white'/>
         </TouchableOpacity>
         <TextInput style={styles.searchInput}></TextInput>
       </View>

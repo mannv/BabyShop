@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flex: 1,
     // width: Metrics.screenWidth / 12,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignSelf: 'center'
   },
   searchInput: {
     ...ApplicationStyles.screen.inputText,
