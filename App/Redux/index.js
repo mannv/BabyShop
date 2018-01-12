@@ -6,9 +6,10 @@ import ReduxPersist from '../Config/ReduxPersist'
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  nav: require('./NavigationRedux').reducer,
-  navigate: require('./CurrentNavigation').reducer,
-  cart: require('./CartRedux').reducer
+  nav: require('./Reducer/NavigationRedux').reducer,
+  navigate: require('./Reducer/CurrentNavigation').reducer,
+  cart: require('./Reducer/CartRedux').reducer,
+  popup: require('./Reducer/PopupRedux').reducer
   // github: require('./GithubRedux').reducer,
   // search: require('./SearchRedux').reducer
 })

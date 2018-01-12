@@ -3,7 +3,7 @@
  */
 
 import Immutable from 'seamless-immutable'
-import {CART_ADD, CART_DECREASE, CART_INCREASE, CART_DELETE, CART_EMPTY} from './Actions/CartAction'
+import {CART_ADD, CART_DECREASE, CART_INCREASE, CART_DELETE, CART_EMPTY} from '../Actions/CartAction'
 
 const cartDefault = {cart: []};
 

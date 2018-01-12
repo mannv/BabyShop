@@ -130,5 +130,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  setCurrentNavigation
+  setCurrentNavigation, addToCart
 })(ProductDetailScreen)

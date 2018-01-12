@@ -6,18 +6,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {Metrics} from '../../Themes'
 
 import {increase, decrease, deleteProduct, emptyCart} from '../../Redux/Actions/CartAction'
+import {deleteCartItem} from '../../Redux/Actions/PopupAction'
 import {connect} from 'react-redux'
 class CartItem extends Component {
   // Defaults for props
   static defaultProps = {
     item: {}
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      amount: 0
-    }
   }
 
   changeAmount = (add = true) => {
@@ -29,21 +23,28 @@ class CartItem extends Component {
     }
   }
 
+  findCartItem(cart, id) {
+    let item = cart.find((a) => {
+      return a.id == id;
+    });
+    return item;
+  }
 
-  componentDidMount() {
+  findAmountInCartStore = () => {
+    let amount = 0;
     const {item, cart} = this.props;
-    if(cart != undefined) {
-      let cartItem = cart.find((a) => {
-        return a.id == item.id;
-      });
+    if (cart != undefined) {
+      let cartItem = this.findCartItem(cart, item.id);
       if (cartItem != undefined) {
-        this.setState({amount: cartItem.amount});
+        amount = cartItem.amount;
       }
     }
+    return amount;
   }
 
 
   render() {
+    const amount = this.findAmountInCartStore();
     const {item} = this.props;
     return (
       <View style={styles.container}>
@@ -56,7 +57,7 @@ class CartItem extends Component {
             <TouchableOpacity style={styles.minusIcon} onPress={() => this.changeAmount(false)}>
               <FontAwesome style={styles.iconColor} name='minus' size={Metrics.icons.small}/>
             </TouchableOpacity>
-            <Text style={styles.number}>{this.state.amount}</Text>
+            <Text style={styles.number}>{amount}</Text>
             <TouchableOpacity style={styles.plusIcon} onPress={() => this.changeAmount(true)}>
               <FontAwesome style={styles.iconColor} name='plus' size={Metrics.icons.small}/>
             </TouchableOpacity>
@@ -69,6 +70,9 @@ class CartItem extends Component {
             </Text>
           </View>
         </View>
+        <TouchableOpacity onPress={() => this.props.deleteCartItem(item.id)} style={styles.removeIcon}>
+          <FontAwesome style={styles.removeIconFont} name="remove" size={Metrics.icons.tiny}></FontAwesome>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -80,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {increase, decrease, deleteProduct, emptyCart})(CartItem);
+export default connect(mapStateToProps, {increase, decrease, deleteProduct, emptyCart, deleteCartItem})(CartItem);

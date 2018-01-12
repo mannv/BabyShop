@@ -55,23 +55,6 @@ class CartList extends React.PureComponent {
     this.setState({dataObjects: items});
   }
 
-  changeQuanlity = (id, add = true) => {
-    // const amount = this.state.cartAmount;
-    // let quanlity = amount[id];
-    // console.log('quanlity: ' + quanlity);
-    // if (add == true) {
-    //   quanlity++;
-    // } else {
-    //   quanlity--;
-    // }
-    // if (quanlity < 1) {
-    //   quanlity = 1;
-    // }
-    // amount[id] = quanlity;
-    // this.demo();
-    // this.setState({cartAmount, amount});
-  }
-
   /* ***********************************************************
   * STEP 2
   * `renderRow` function. How each cell/row should be rendered
@@ -81,7 +64,6 @@ class CartList extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    const amount = 1;
     return <CartItem item={item}></CartItem>
   }
 

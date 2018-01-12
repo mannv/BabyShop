@@ -65,5 +65,13 @@ export default StyleSheet.create({
   },
   iconColor: {
     color: Colors.gray
+  },
+  removeIcon: {
+    position: 'absolute',
+    top: Metrics.baseMargin,
+    right: Metrics.baseMargin
+  },
+  removeIconFont: {
+    color: Colors.organe,
   }
 })
