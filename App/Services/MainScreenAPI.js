@@ -14,4 +14,8 @@ export default class MainScreenAPI extends BaseAPI {
   flashsale = (responseCallback) => {
     this.get('flashsale', responseCallback);
   }
+
+  categoriesFeature = (responseCallback) => {
+    this.get('categories/feature', responseCallback);
+  }
 }

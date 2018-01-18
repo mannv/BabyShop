@@ -29,7 +29,7 @@ class CategoryFeatureItem extends Component {
     const {item} = this.props;
     return (
       <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
-        <Image source={{url: item.uri}} style={styles.thumbnail}></Image>
+        <Image source={{url: item.thumbnail}} style={styles.thumbnail}></Image>
         <Text style={styles.price}>{item.price}</Text>
       </TouchableOpacity>
     )

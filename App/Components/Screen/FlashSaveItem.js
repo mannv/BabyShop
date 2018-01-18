@@ -27,14 +27,23 @@ class FlashSaveItem extends Component {
     navigate('ProductDetailScreen', {id: this.props.item.id});
   }
 
+  /**
+   id: 499,
+   name: 'Et impedit consequuntur excepturi qui ut sint.',
+   old_price: 615354,
+   price: 430748,
+   percent: '30%',
+   thumbnail: 'https://lorempixel.com/400/400/?57497',
+   sold: 3
+   */
   render() {
     const {item} = this.props;
     return (
       <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
-        <Image source={{url: item.uri}} style={styles.thumbnail}></Image>
+        <Image source={{url: item.thumbnail}} style={styles.thumbnail}></Image>
         <Text style={styles.price}>{item.price}</Text>
         <View style={styles.purchase}>
-          <Text style={styles.purchase_text}>{item.purchase}</Text>
+          <Text style={styles.purchase_text}>{item.sold}</Text>
         </View>
       </TouchableOpacity>
     )

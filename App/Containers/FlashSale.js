@@ -47,7 +47,7 @@ class FlashSale extends React.PureComponent {
 
   // Show this when data is empty
   renderEmpty = () => {
-    return <Text style={styles.label}> - Nothing to See Here - </Text>
+    return null
   }
 
   renderSeparator = () => {

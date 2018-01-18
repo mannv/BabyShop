@@ -84,7 +84,7 @@ class CategoryFeature extends React.PureComponent {
         showsHorizontalScrollIndicator={false}
         horizontal={true}
         contentContainerStyle={styles.listContent}
-        data={category.items}
+        data={category.products}
         renderItem={(item) => this.renderRow(item)}
         keyExtractor={this.keyExtractor}
         initialNumToRender={this.oneScreensWorth}
