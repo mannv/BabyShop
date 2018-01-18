@@ -8,28 +8,36 @@ import CategoryPanel from './CategoryPanel'
 import RoundedButton from '../RoundedButton'
 import I18n from '../../I18n'
 import {connect} from 'react-redux'
+import MainScreenAPI from '../../Services/MainScreenAPI'
+
 
 class ControlPanel extends Component {
+
+  api = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      cateItems: []
+    }
+    this.api = MainScreenAPI.init();
+  }
+
   // Defaults for props
   static defaultProps = {
     closeMenu: PropTypes.func
   }
 
-  render() {
-    const cateItems = [
-      {
-        id: 1,
-        name: 'Category 1'
-      },
-      {
-        id: 2,
-        name: 'Category 2'
-      },
-      {
-        id: 3,
-        name: 'Category 3'
+
+  componentDidMount() {
+    this.api.categories((json) => {
+      if(json.status) {
+        this.setState({cateItems: json.data});
       }
-    ];
+    });
+  }
+
+
+  render() {
     return (
       <View style={styles.container}>
         <View style={{flex: 3}}>
@@ -37,7 +45,7 @@ class ControlPanel extends Component {
         </View>
         <View style={{flex: 9}}>
           <ScrollView>
-            <CategoryPanel items={cateItems}></CategoryPanel>
+            <CategoryPanel items={this.state.cateItems}></CategoryPanel>
           </ScrollView>
         </View>
         <View style={[{flex: 1}, styles.footer]}>

@@ -12,8 +12,7 @@ import CategoryFeature from './CategoryFeature'
 // Styles
 import styles from './Styles/HomeScreenStyle'
 
-import API from '../Services/Api'
-import {NONE} from 'apisauce'
+import MainScreenAPI from '../Services/MainScreenAPI'
 
 class HomeScreen extends Component {
   api = {};
@@ -24,17 +23,15 @@ class HomeScreen extends Component {
       flashSaleData: [],
       categoryFeatureData: []
     }
-    this.api = API.create();
+    this.api = MainScreenAPI.init();
   }
 
   loadSwiperData() {
-    this.api['banners'].apply(this).then((result) => {
-      if(result.problem != NONE) {
-        console.log('Error: ' + JSON.stringify(result.data));
-      } else {
-        console.log('FETCH DONE');
-        this.setState({swiperData: result.data.data});
+    this.api.banners((json) => {
+      if(!json.status) {
+        return;
       }
+      this.setState({swiperData: json.data});
     });
   }
 
