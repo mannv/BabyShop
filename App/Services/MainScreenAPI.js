@@ -2,6 +2,7 @@
 import BaseAPI from './BaseAPI'
 
 export default class MainScreenAPI extends BaseAPI {
+
   banners = (responseCallback) => {
     this.get('banners', responseCallback);
   }

@@ -6,11 +6,10 @@ import Config from 'react-native-config'
 const API_URL = Config.API_URL;
 export default class BaseAPI {
   api = null;
-
-  init = () => {
+  constructor() {
     this.api = apisauce.create({
       // base URL is read from the "constructor"
-      API_URL,
+      baseURL: API_URL,
       // here are some default headers
       headers: {
         'Cache-Control': 'no-cache',
@@ -27,12 +26,7 @@ export default class BaseAPI {
     }).then((json) => {
       responseCallback(json);
     }).catch((e) => {
-      console.log('Error: ' + e.message);
+      console.log('Error2: ' + e.message);
     });
   }
 }
-
-// let's return back our create method as the default.
-// export default {
-//   create
-// }

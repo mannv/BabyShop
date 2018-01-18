@@ -19,7 +19,7 @@ class ControlPanel extends Component {
     this.state = {
       cateItems: []
     }
-    this.api = MainScreenAPI.init();
+    this.api = new MainScreenAPI();
   }
 
   // Defaults for props

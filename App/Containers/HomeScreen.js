@@ -23,7 +23,7 @@ class HomeScreen extends Component {
       flashSaleData: [],
       categoryFeatureData: []
     }
-    this.api = MainScreenAPI.init();
+    this.api = new MainScreenAPI();
   }
 
   loadSwiperData() {
