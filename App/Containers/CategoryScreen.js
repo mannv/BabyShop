@@ -27,11 +27,11 @@ class CategoryScreen extends Component {
             <TouchableOpacity style={styles.touchIconBack} onPress={() => {navigation.goBack()}}>
               <Icon style={styles.iconBack} name='ios-arrow-back' size={Metrics.icons.medium} />
             </TouchableOpacity>
-            <Text style={styles.categoryName}>ID {params.name} -- {params.id} -- [{params.feature}]</Text>
+            <Text style={styles.categoryName}>{params.name}</Text>
           </View>
         </View>
         <View style={styles.content}>
-          <CategoryListView></CategoryListView>
+          <CategoryListView params={params}></CategoryListView>
         </View>
       </View>
     )

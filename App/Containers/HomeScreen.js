@@ -36,7 +36,7 @@ class HomeScreen extends Component {
   }
 
   loadFlashSaleData() {
-    this.api.flashsale((json) => {
+    this.api.flashSale((json) => {
       if(!json.status) {
         return;
       }

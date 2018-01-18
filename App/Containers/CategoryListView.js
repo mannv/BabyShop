@@ -6,112 +6,25 @@ import {connect} from 'react-redux'
 
 // Styles
 import styles from './Styles/CategoryListViewStyle'
-
+import CategoryScreenAPI from '../Services/CategoryScreenAPI'
 class CategoryListView extends React.PureComponent {
-  /* ***********************************************************
-   * STEP 1
-   * This is an array of objects with the properties you desire
-   * Usually this should come from Redux mapStateToProps
-   *************************************************************/
-  state = {
-    dataObjects: [
-      {
-        id: 1,
-        name: 'San pham 1',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 2,
-        name: 'San pham 2',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 3,
-        name: 'San pham 3',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 4,
-        name: 'San pham 4',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 1,
-        name: 'San pham 1',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 2,
-        name: 'San pham 2',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 3,
-        name: 'San pham 3',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 4,
-        name: 'San pham 4',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 1,
-        name: 'San pham 1',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 2,
-        name: 'San pham 2',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 3,
-        name: 'San pham 3',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 4,
-        name: 'San pham 4',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 1,
-        name: 'San pham 1',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 2,
-        name: 'San pham 2',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 3,
-        name: 'San pham 3',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-      {
-        id: 4,
-        name: 'San pham 4',
-        price: '116000',
-        uri: 'https://cf.shopee.vn/file/8e84afdf8bc534ec4f525b9e8aa5b4ca_tn'
-      },
-    ]
+  api = null;
+  constructor(props) {
+    super(props);
+    this.api = new CategoryScreenAPI();
+    this.state = {
+      products: []
+    }
+  }
+
+  componentDidMount() {
+    const {params} = this.props;
+    this.api.categoryProduct(params.id, (json) => {
+      if(!json.status) {
+        return;
+      }
+      this.setState({products: json.data});
+    });
   }
 
   gotoDetail = (id) => {
@@ -130,7 +43,7 @@ class CategoryListView extends React.PureComponent {
   renderRow({item}) {
     return (
       <TouchableOpacity onPress={() => this.gotoDetail(item.id)} style={styles.item}>
-        <Image style={styles.thumbnail} source={{uri: item.uri}}/>
+        <Image style={styles.thumbnail} source={{uri: item.thumbnail}}/>
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.price}>{item.price}</Text>
       </TouchableOpacity>
@@ -153,8 +66,9 @@ class CategoryListView extends React.PureComponent {
   }
 
   // Show this when data is empty
-  renderEmpty = () =>
-    <Text style={styles.label}> - Nothing to See Here - </Text>
+  renderEmpty = () => {
+    return null
+  }
 
   renderSeparator = () => {
     return null
@@ -188,7 +102,7 @@ class CategoryListView extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.dataObjects}
+          data={this.state.products}
           renderItem={(item) => this.renderRow(item)}
           numColumns={2}
           keyExtractor={this.keyExtractor}

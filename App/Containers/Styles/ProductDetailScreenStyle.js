@@ -96,5 +96,16 @@ export default StyleSheet.create({
   icon_add_to_cart: {
     alignSelf: 'center',
     paddingRight: Metrics.baseMargin
+  },
+  amount: {
+    ...ApplicationStyles.screen.padding_tb,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: Colors.border,
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginLeft: 10,
+    marginRight: 10
   }
 })

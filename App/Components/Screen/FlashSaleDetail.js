@@ -19,12 +19,14 @@ class FlashSaleDetail extends Component {
     return (
       <TouchableOpacity onPress={() => {this.gotoDetail(item.id)}} style={styles.container}>
         <View style={styles.thumbnail}>
-          <Image style={styles.img} source={{uri: item.uri}} />
+          <Image style={styles.img} source={{uri: item.thumbnail}} />
         </View>
         <View style={styles.productInfo}>
           <View style={styles.productInfoWapper}>
             <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.oldPrice}>{item.old_price}</Text>
+            {
+              item.old_price != '' ? <Text style={styles.oldPrice}>{item.old_price}</Text> : null
+            }
             <Text style={styles.price}>{item.price}</Text>
             <Text style={styles.sale}>{item.purchase}</Text>
           </View>
