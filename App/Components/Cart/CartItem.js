@@ -8,14 +8,20 @@ import {Metrics} from '../../Themes'
 import {increase, decrease} from '../../Redux/Actions/CartAction'
 import {deleteCartItem} from '../../Redux/Actions/PopupAction'
 import {connect} from 'react-redux'
+import {currency} from '../../Lib/global'
 class CartItem extends Component {
   // Defaults for props
   static defaultProps = {
-    item: {}
+    item: {},
+    product: {}
   }
 
   changeAmount = (add = true) => {
     const {item} = this.props;
+    if(!add && item.amount == 1) {
+      console.log('Amount min = 1');
+      return;
+    }
     if (add == true) {
       this.props.increase(item.id);
     } else {
@@ -23,36 +29,17 @@ class CartItem extends Component {
     }
   }
 
-  findCartItem(cart, id) {
-    let item = cart.find((a) => {
-      return a.id == id;
-    });
-    return item;
-  }
-
-  findAmountInCartStore = () => {
-    let amount = 0;
-    const {item, cart} = this.props;
-    if (cart != undefined) {
-      let cartItem = this.findCartItem(cart, item.id);
-      if (cartItem != undefined) {
-        amount = cartItem.amount;
-      }
-    }
-    return amount;
-  }
-
-
   render() {
-    const amount = this.findAmountInCartStore();
-    const {item} = this.props;
+    const {item, product} = this.props;
+    const amount = item.amount;
+
     return (
       <View style={styles.container}>
         <View style={styles.thumbnail}>
-          <Image source={{uri: item.thumbnail}} style={styles.img}/>
+          <Image source={{uri: product.thumbnail}} style={styles.img}/>
         </View>
         <View style={styles.info}>
-          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.name}>{product.name}</Text>
           <View style={styles.amount}>
             <TouchableOpacity style={styles.minusIcon} onPress={() => this.changeAmount(false)}>
               <FontAwesome style={styles.iconColor} name='minus' size={Metrics.icons.small}/>
@@ -64,13 +51,13 @@ class CartItem extends Component {
           </View>
 
           <View style={styles.pr}>
-            {item.oldPrice > 0 ? <Text style={styles.oldPrice}>{item.oldPrice}</Text> : null}
+            {product.old_price > 0 ? <Text style={styles.oldPrice}>{currency(product.old_price)}</Text> : null}
             <Text style={styles.price}>
-              {item.price}
+              {currency(product.price)}
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => this.props.deleteCartItem(item.id)} style={styles.removeIcon}>
+        <TouchableOpacity onPress={() => this.props.deleteCartItem(product.id)} style={styles.removeIcon}>
           <FontAwesome style={styles.removeIconFont} name="remove" size={Metrics.icons.tiny}></FontAwesome>
         </TouchableOpacity>
       </View>
@@ -79,9 +66,7 @@ class CartItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    cart: state.cart.cart
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, {increase, decrease, deleteCartItem})(CartItem);

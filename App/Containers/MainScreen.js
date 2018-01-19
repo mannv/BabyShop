@@ -31,7 +31,7 @@ class MainScreen extends Component {
     const {state} = this.props.navigation;
     if (state.hasOwnProperty('params')) {
       const {params} = state;
-      if(params != undefined && params.hasOwnProperty('tab')) {
+      if (params != undefined && params.hasOwnProperty('tab')) {
         this.setState({selectedTab: params.tab});
       }
     }
@@ -51,8 +51,18 @@ class MainScreen extends Component {
     )
   }
 
+  getTotalProductInCart = () => {
+    let total = 0;
+    const {cart} = this.props;
+    cart.map((item) => {
+      total += item.amount;
+    });
+    return total;
+  }
+
   render() {
     const {navigate} = this.props.navigation;
+    const totalProduct = this.getTotalProductInCart();
     return (
 
       <Drawer openDrawerOffset={0.2} tapToClose
@@ -69,7 +79,7 @@ class MainScreen extends Component {
             <HomeScreen openMenu={() => this.openControlPanel()}></HomeScreen>
           </TabNavigator.Item>
           <TabNavigator.Item
-            badgeText={1}
+            badgeText={totalProduct}
             renderIcon={() => this.renderIcon('shopping-cart')}
             renderSelectedIcon={() => this.renderIcon('shopping-cart', true)}
             selected={this.state.selectedTab === 'cart'}
@@ -90,7 +100,9 @@ class MainScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    cart: state.cart.cart,
+  }
 }
 
 export default connect(mapStateToProps, {setCurrentNavigation})(MainScreen)

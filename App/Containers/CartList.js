@@ -9,50 +9,8 @@ import styles from './Styles/CartListStyle'
 import CartItem from '../Components/Cart/CartItem'
 
 class CartList extends React.PureComponent {
-  /* ***********************************************************
-  * STEP 1
-  * This is an array of objects with the properties you desire
-  * Usually this should come from Redux mapStateToProps
-  *************************************************************/
   constructor(props) {
     super(props);
-    this.state = {
-      dataObjects: []
-    }
-  }
-
-  componentDidMount() {
-    const items = [
-      {
-        id: 1,
-        name: "Giày Lười Mẫu Mới Loại 1 - kèm feedback của khách",
-        oldPrice: 120000,
-        price: 80000,
-        thumbnail: "https://cf.shopee.vn/file/da9ef400d360401df1fe3dfc5d74b7fc"
-      },
-      {
-        id: 2,
-        name: "Giày Lười Mẫu Mới Loại 1 - kèm feedback của khách",
-        oldPrice: 100000,
-        price: 90000,
-        thumbnail: "https://cf.shopee.vn/file/7248384d19dcef9d06e69fb3a03596cb"
-      },
-      {
-        id: 3,
-        name: "Giày Lười Mẫu Mới",
-        oldPrice: 0,
-        price: 50000,
-        thumbnail: "https://cf.shopee.vn/file/85e2e32da92a67e185dcbc109bdfad42"
-      },
-      {
-        id: 4,
-        name: "Giày Lười Mẫu Mới Loại 1",
-        oldPrice: 115000,
-        price: 70000,
-        thumbnail: "https://cf.shopee.vn/file/d6ff0bcfc961bf9e0c705ee0ab633f2e"
-      }
-    ];
-    this.setState({dataObjects: items});
   }
 
   /* ***********************************************************
@@ -64,7 +22,12 @@ class CartList extends React.PureComponent {
     return <MyCustomCell title={item.title} description={item.description} />
   *************************************************************/
   renderRow ({item}) {
-    return <CartItem item={item}></CartItem>
+    const {products} = this.props;
+    const product = products.find(e => e.id == item.id);
+    if(product == undefined) {
+      return null;
+    }
+    return <CartItem item={item} product={product}></CartItem>
   }
 
   /* ***********************************************************
@@ -83,8 +46,9 @@ class CartList extends React.PureComponent {
   }
 
   // Show this when data is empty
-  renderEmpty = () =>
-    <Text style={styles.label}> - Nothing to See Here - </Text>
+  renderEmpty = () => {
+    return null
+  }
 
   renderSeparator = () => {
     return null
@@ -117,7 +81,7 @@ class CartList extends React.PureComponent {
       <View style={styles.container}>
         <FlatList
           contentContainerStyle={styles.listContent}
-          data={this.state.dataObjects}
+          data={this.props.cart}
           renderItem={(item) => this.renderRow(item)}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
@@ -133,7 +97,7 @@ class CartList extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    cart: state.cart.cart
   }
 }
 

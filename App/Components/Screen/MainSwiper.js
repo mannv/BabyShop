@@ -4,7 +4,7 @@ import {View, Text, Image, TouchableOpacity, Alert} from 'react-native'
 import styles from '../Styles/MainSwiperStyle'
 import Swiper from 'react-native-swiper'
 import {Metrics} from '../../Themes'
-import global from '../global'
+import {getImageHeight} from '../../Lib/global'
 export default class MainSwiper extends Component {
   static defaultProps = {
     items: []
@@ -16,7 +16,7 @@ export default class MainSwiper extends Component {
 
   render() {
     const {items} = this.props;
-    const swiperHeight = global.getImageHeight(Metrics.screenWidth, 375, 113);
+    const swiperHeight = getImageHeight(Metrics.screenWidth, 375, 113);
     console.log(`w: ${Metrics.screenWidth} h: ${swiperHeight}`);
     if(items.length > 0) {
       return (

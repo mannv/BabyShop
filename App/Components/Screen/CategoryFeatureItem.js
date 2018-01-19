@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, Image} from 'react-native'
 import styles from '../Styles/CategoryFeatureItemStyle'
 import {connect} from 'react-redux'
-
+import {currency} from '../../Lib/global'
 class CategoryFeatureItem extends Component {
   // // Prop type warnings
   // static propTypes = {
@@ -30,7 +30,7 @@ class CategoryFeatureItem extends Component {
     return (
       <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
         <Image source={{url: item.thumbnail}} style={styles.thumbnail}></Image>
-        <Text style={styles.price}>{item.price}</Text>
+        <Text style={styles.price}>{currency(item.price)}</Text>
       </TouchableOpacity>
     )
   }

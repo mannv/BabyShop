@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Metrics, Colors, Fonts } from '../../Themes'
-import global from '../../Components/global'
+import {getImageHeight} from '../../Lib/global'
 const thumbnailWidth = (Metrics.screenWidth - (Metrics.baseMargin * 2)) / 5;
-const thumbnailHeight = global.getImageHeight(thumbnailWidth, 1, 1);
+const thumbnailHeight = getImageHeight(thumbnailWidth, 1, 1);
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {

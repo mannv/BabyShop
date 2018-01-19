@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Metrics, Colors, Fonts } from '../../Themes'
-import global from '../global'
+import {getImageHeight} from '../../Lib/global'
 const imageWidth = Metrics.screenWidth / 5;
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   img: {
     width: imageWidth,
-    height: global.getImageHeight(imageWidth, 100, 100)
+    height: getImageHeight(imageWidth, 100, 100)
   },
   productInfoWapper: {
     paddingLeft: 10

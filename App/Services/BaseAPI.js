@@ -15,14 +15,19 @@ export default class BaseAPI {
         'Cache-Control': 'no-cache',
         'Accept': 'application/babyshop.api.v1+json'
       },
-      // 10 second timeout...
-      timeout: 10000
+      // 30 second timeout...
+      timeout: 30000
     });
   }
 
   get = (endpoint, responseCallback) => {
-    this.api.get(endpoint).then((data) => {
-      return {status: data.problem == NONE, data: data.data.data};
+    this.api.get(endpoint).then((json) => {
+      if(json.problem == NONE) {
+        return {status: json.problem == NONE, data: json.data.data};
+      } else {
+        console.log(json);
+        return {status: false};
+      }
     }).then((json) => {
       responseCallback(json);
     }).catch((e) => {

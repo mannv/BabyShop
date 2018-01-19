@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 // Styles
 import styles from './Styles/CategoryListViewStyle'
 import CategoryScreenAPI from '../Services/CategoryScreenAPI'
+import {currency} from '../Lib/global'
 class CategoryListView extends React.PureComponent {
   api = null;
   constructor(props) {
@@ -45,7 +46,7 @@ class CategoryListView extends React.PureComponent {
       <TouchableOpacity onPress={() => this.gotoDetail(item.id)} style={styles.item}>
         <Image style={styles.thumbnail} source={{uri: item.thumbnail}}/>
         <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.price}>{item.price}</Text>
+        <Text style={styles.price}>{currency(item.price)}</Text>
       </TouchableOpacity>
     )
   }

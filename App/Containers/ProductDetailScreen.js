@@ -15,6 +15,7 @@ import I18n from '../I18n'
 import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 import {addToCart} from '../Redux/Actions/CartAction'
 import ProductDetailScreenAPI from '../Services/ProductDetailScreenAPI'
+import {currency} from '../Lib/global'
 class ProductDetailScreen extends Component {
   api = null;
 
@@ -95,8 +96,8 @@ class ProductDetailScreen extends Component {
             <View style={styles.productInfoWapper}>
               <Text style={styles.productName}>{item.name}</Text>
 
-              <Text style={styles.price}> {item.price}
-                {item.old_price != '' ? <Text style={styles.oldPrice}>{item.old_price}</Text> : null}
+              <Text style={styles.price}> {currency(item.price)}
+                {item.old_price > 0 ? <Text style={styles.oldPrice}>{currency(item.old_price)}</Text> : null}
               </Text>
             </View>
             <View style={styles.descriptionWapper}>

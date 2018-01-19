@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
 import {View, Text, Image, TouchableOpacity} from 'react-native'
 import styles from '../Styles/FlashSaveItemStyle'
-
 import {connect} from 'react-redux'
+import {currency} from '../../Lib/global'
 
 class FlashSaveItem extends Component {
   // // Prop type warnings
@@ -41,7 +41,7 @@ class FlashSaveItem extends Component {
     return (
       <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
         <Image source={{url: item.thumbnail}} style={styles.thumbnail}></Image>
-        <Text style={styles.price}>{item.price}</Text>
+        <Text style={styles.price}>{currency(item.price)}</Text>
         <View style={styles.purchase}>
           <Text style={styles.purchase_text}>{item.sold}</Text>
         </View>
