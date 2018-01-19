@@ -19,7 +19,6 @@ class FlashSaleScreen extends Component {
   }
   render () {
     const {navigation} = this.props;
-    const navigate = navigation.navigate;
     return (
       <View style={styles.container}>
         <View style={styles.heading}>

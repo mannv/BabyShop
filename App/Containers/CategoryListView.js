@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import styles from './Styles/CategoryListViewStyle'
 import CategoryScreenAPI from '../Services/CategoryScreenAPI'
 import {currency} from '../Lib/global'
+import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
 class CategoryListView extends React.PureComponent {
   api = null;
   constructor(props) {
@@ -20,7 +21,9 @@ class CategoryListView extends React.PureComponent {
 
   componentDidMount() {
     const {params} = this.props;
+    this.props.showWaiting();
     this.api.categoryProduct(params.id, (json) => {
+      this.props.hideWaiting();
       if(!json.status) {
         return;
       }
@@ -124,4 +127,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(CategoryListView)
+export default connect(mapStateToProps, {showWaiting, hideWaiting})(CategoryListView)

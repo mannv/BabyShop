@@ -8,6 +8,8 @@ import {connect} from 'react-redux'
 import styles from './Styles/ListFlashSaleStyle'
 import FlashSaleDetail from '../Components/Screen/FlashSaleDetail'
 import FlashSaleScreenAPI from '../Services/FlashSaleScreenAPI'
+import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
+
 class ListFlashSale extends React.PureComponent {
   api = null;
 
@@ -20,7 +22,9 @@ class ListFlashSale extends React.PureComponent {
   }
 
   componentDidMount() {
+    this.props.showWaiting();
     this.api.flashSaleDetail((json) => {
+      this.props.hideWaiting();
       if(!json.status) {
         return;
       }
@@ -109,4 +113,4 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps)(ListFlashSale)
+export default connect(mapStateToProps, {showWaiting, hideWaiting})(ListFlashSale)

@@ -47,5 +47,6 @@
   "cart_title":"Cart detail",
   "total_price":"Total price",
   "btn_check_out":"Check out",
-  "please_waiting":"Waiting..."
+  "please_waiting":"Waiting...",
+  "cart_empty":"This cart is empty, please add product to card to purchase"
 }

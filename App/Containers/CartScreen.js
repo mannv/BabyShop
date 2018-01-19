@@ -12,7 +12,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {Metrics} from '../Themes'
 import I18n from '../I18n'
 import {deleteCartItem, showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
-import PopupWaiting from '../Components/PopupWaiting'
 import CartScreenAPI from '../Services/CartScreenAPI'
 
 import {currency} from '../Lib/global'
@@ -114,7 +113,7 @@ class CartScreen extends Component {
     if(this.checkCartEmpty()) {
         return (
           <View style={{justifyContent: 'center', marginTop: Metrics.screenHeight / 4}}>
-            <Text style={{textAlign: 'center'}}>Cart empty</Text>
+            <Text style={{textAlign: 'center'}}>{I18n.t('cart_empty')}</Text>
           </View>
         )
     }
@@ -145,7 +144,6 @@ class CartScreen extends Component {
 
 
         <CartRemoveItemModal config={deleteCart}></CartRemoveItemModal>
-        <PopupWaiting visible={this.props.waiting}/>
       </View>
     )
   }
@@ -155,7 +153,6 @@ const mapStateToProps = (state) => {
   return {
     cart: state.cart.cart,
     deleteCart: state.popup.deleteCartItem,
-    waiting: state.popup.waiting,
     navigation: state.navigate.navigation
   }
 }

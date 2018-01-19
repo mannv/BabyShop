@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { View, ScrollView, Text, KeyboardAvoidingView } from 'react-native'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {View, ScrollView, Text, KeyboardAvoidingView} from 'react-native'
+import {connect} from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -13,55 +13,67 @@ import CategoryFeature from './CategoryFeature'
 import styles from './Styles/HomeScreenStyle'
 
 import MainScreenAPI from '../Services/MainScreenAPI'
-
+import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
 class HomeScreen extends Component {
   api = {};
+
   constructor(props) {
     super(props);
     this.state = {
       swiperData: [],
       flashSaleData: [],
-      categoryFeatureData: []
+      categoryFeatureData: [],
+      fetchAPI: 0
     }
     this.api = new MainScreenAPI();
   }
 
   loadSwiperData() {
     this.api.banners((json) => {
-      if(!json.status) {
+      if (!json.status) {
         return;
       }
+      this.fetchCountAPI();
       this.setState({swiperData: json.data});
     });
   }
 
   loadFlashSaleData() {
     this.api.flashSale((json) => {
-      if(!json.status) {
+      if (!json.status) {
         return;
       }
+      this.fetchCountAPI();
       this.setState({flashSaleData: json.data});
     });
   }
 
   loadCategoryFeatureData() {
     this.api.categoriesFeature((json) => {
-      if(!json.status) {
+      if (!json.status) {
         return;
       }
+      this.fetchCountAPI();
       this.setState({categoryFeatureData: json.data});
     });
   }
 
-  componentDidMount() {
+  fetchCountAPI() {
+    this.setState({fetchAPI: this.state.fetchAPI + 1});
+    console.log('this.state.fetchAPI: ' + this.state.fetchAPI);
+    if (this.state.fetchAPI == 3) {
+      this.props.hideWaiting();
+    }
+  }
 
+  componentDidMount() {
+    this.props.showWaiting();
     this.loadSwiperData();
     this.loadFlashSaleData();
     this.loadCategoryFeatureData();
   }
 
-  render () {
-    const {navigate} = this.props.navigation;
+  render() {
     return (
       <View style={styles.mainContainer}>
         <View style={[styles.heading]}>
@@ -92,4 +104,4 @@ const mapStateToProps = (state) => {
   return {navigation: state.navigate.navigation}
 }
 
-export default connect(mapStateToProps)(HomeScreen)
+export default connect(mapStateToProps, {showWaiting, hideWaiting})(HomeScreen)

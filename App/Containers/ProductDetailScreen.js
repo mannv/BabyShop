@@ -16,6 +16,7 @@ import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 import {addToCart} from '../Redux/Actions/CartAction'
 import ProductDetailScreenAPI from '../Services/ProductDetailScreenAPI'
 import {currency} from '../Lib/global'
+import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
 class ProductDetailScreen extends Component {
   api = null;
 
@@ -45,7 +46,9 @@ class ProductDetailScreen extends Component {
   componentDidMount() {
     this.props.setCurrentNavigation(this.props.navigation);
     const {params} = this.props.navigation.state;
+    this.props.showWaiting();
     this.api.productDetail(params.id, (json) => {
+      this.props.hideWaiting();
       if (!json.status) {
         return;
       }
@@ -129,4 +132,4 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, {setCurrentNavigation, addToCart})(ProductDetailScreen)
+export default connect(mapStateToProps, {setCurrentNavigation, addToCart, showWaiting, hideWaiting})(ProductDetailScreen)

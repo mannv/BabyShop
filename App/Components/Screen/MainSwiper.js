@@ -17,7 +17,6 @@ export default class MainSwiper extends Component {
   render() {
     const {items} = this.props;
     const swiperHeight = getImageHeight(Metrics.screenWidth, 375, 113);
-    console.log(`w: ${Metrics.screenWidth} h: ${swiperHeight}`);
     if(items.length > 0) {
       return (
         <Swiper autoplay={true} height={swiperHeight} paginationStyle={{bottom: 10}}
