@@ -21,9 +21,17 @@ export default class BaseAPI {
   }
 
   get = (endpoint, responseCallback) => {
+    console.log(`GET: ${endpoint}`);
     this.api.get(endpoint).then((json) => {
       if(json.problem == NONE) {
-        return {status: json.problem == NONE, data: json.data.data};
+        let response = {
+          status: json.problem == NONE,
+          data: json.data.data
+        };
+        if(json.data.hasOwnProperty('meta') && json.data.meta.hasOwnProperty('pagination')) {
+          response.pagination = json.data.meta.pagination;
+        }
+        return response;
       } else {
         console.log(json);
         return {status: false};

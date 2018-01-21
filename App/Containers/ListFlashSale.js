@@ -17,19 +17,51 @@ class ListFlashSale extends React.PureComponent {
     super(props);
     this.api = new FlashSaleScreenAPI();
     this.state = {
-      products: []
+      products: [],
+      currentPage: 1,
+      totalPage: 0,
+      refreshing: true,
+      pageLoad: []
     }
   }
 
-  componentDidMount() {
-    this.props.showWaiting();
-    this.api.flashSaleDetail((json) => {
-      this.props.hideWaiting();
-      if(!json.status) {
+  onEndReached() {
+    if (this.state.totalPage < this.state.currentPage) {
+      console.log('Total page: ' + this.state.totalPage);
+      console.log('currentPage: ' + this.state.currentPage);
+      return;
+    }
+    // this.props.showWaiting();
+    this.api.flashSaleDetail(this.state.currentPage, (json) => {
+      // this.props.hideWaiting();
+      this.setState({refreshing: false});
+      if (!json.status) {
         return;
       }
-      this.setState({products: json.data});
+      const {pagination} = json;
+
+      if(this.state.pageLoad.find(e => e == pagination.current_page)) {
+        console.log('Page: ' + pagination.current_page + ' da load du lieu roi');
+        return;
+      } else {
+        this.setState({pageLoad: this.state.pageLoad.concat(pagination.current_page)});
+      }
+
+      if (pagination.total_pages > this.state.currentPage) {
+        this.setState({totalPage: pagination.total_pages});
+        this.setState({currentPage: pagination.current_page + 1});
+      }
+
+      // console.log(json);
+      this.setState({products: this.state.products.concat(json.data)});
+      console.log('count: ' + this.state.products.length);
+      console.log(JSON.stringify(this.state.pageLoad));
+
     });
+  }
+
+  onRefresh() {
+    console.log('===> onRefresh');
   }
 
   /* ***********************************************************
@@ -74,7 +106,7 @@ class ListFlashSale extends React.PureComponent {
   keyExtractor = (item, index) => index
 
   // How many items should be kept im memory as we scroll?
-  oneScreensWorth = 20
+  oneScreensWorth = 10
 
   // extraData is for anything that is not indicated in data
   // for instance, if you kept "favorites" in `this.state.favs`
@@ -94,6 +126,10 @@ class ListFlashSale extends React.PureComponent {
     return (
       <View style={styles.container}>
         <FlatList
+          refreshing={this.state.refreshing}
+          onRefresh={() => this.onRefresh()}
+          onEndReached={() => this.onEndReached()}
+          onEndReachedThreshold={0.5}
           contentContainerStyle={styles.listContent}
           data={this.state.products}
           renderItem={(item) => this.renderRow(item)}
