@@ -8,26 +8,66 @@ import {connect} from 'react-redux'
 import styles from './Styles/CategoryListViewStyle'
 import CategoryScreenAPI from '../Services/CategoryScreenAPI'
 import {currency} from '../Lib/global'
-import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
 class CategoryListView extends React.PureComponent {
   api = null;
+
+  defaultState = {
+    products: [],
+    currentPage: 1,
+    totalPage: 0,
+    refreshing: true,
+    pageLoad: []
+  }
+
   constructor(props) {
     super(props);
     this.api = new CategoryScreenAPI();
-    this.state = {
-      products: []
-    }
+    this.state = this.defaultState;
   }
 
+  onRefresh() {
+    this.setState({...this.defaultState});
+    setTimeout(() => {
+      this.onEndReached();
+    }, 500);
+  }
+
+
   componentDidMount() {
+    this.onEndReached();
+  }
+
+
+  onEndReached() {
     const {params} = this.props;
-    this.props.showWaiting();
-    this.api.categoryProduct(params.id, (json) => {
-      this.props.hideWaiting();
-      if(!json.status) {
+    const cateId = params.id;
+    if (this.state.totalPage > 0 && this.state.totalPage < this.state.currentPage) {
+      console.log('Total page: ' + this.state.totalPage + ' ---- currentPage: ' + this.state.currentPage);
+      return;
+    }
+    this.api.categoryProduct(cateId, this.state.currentPage, (json) => {
+      this.setState({refreshing: false});
+      if (!json.status) {
         return;
       }
-      this.setState({products: json.data});
+      const {pagination} = json;
+
+      if (this.state.pageLoad.find(e => e == pagination.current_page)) {
+        console.log('Page: ' + pagination.current_page + ' da load du lieu roi');
+        return;
+      } else {
+        this.setState({pageLoad: this.state.pageLoad.concat(pagination.current_page)});
+      }
+
+      if (pagination.total_pages > this.state.currentPage) {
+        this.setState({totalPage: pagination.total_pages});
+        this.setState({currentPage: pagination.current_page + 1});
+      }
+
+      // console.log(json);
+      this.setState({products: this.state.products.concat(json.data)});
+      console.log('count: ' + this.state.products.length);
+      console.log(JSON.stringify(this.state.pageLoad));
     });
   }
 
@@ -85,7 +125,7 @@ class CategoryListView extends React.PureComponent {
   keyExtractor = (item, index) => index
 
   // How many items should be kept im memory as we scroll?
-  oneScreensWorth = 20
+  oneScreensWorth = 10
 
   // extraData is for anything that is not indicated in data
   // for instance, if you kept "favorites" in `this.state.favs`
@@ -105,6 +145,10 @@ class CategoryListView extends React.PureComponent {
     return (
       <View style={styles.container}>
         <FlatList
+          refreshing={this.state.refreshing}
+          onRefresh={() => this.onRefresh()}
+          onEndReached={() => this.onEndReached()}
+          onEndReachedThreshold={0.5}
           contentContainerStyle={styles.listContent}
           data={this.state.products}
           renderItem={(item) => this.renderRow(item)}
@@ -127,4 +171,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {showWaiting, hideWaiting})(CategoryListView)
+export default connect(mapStateToProps)(CategoryListView)

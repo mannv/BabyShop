@@ -1,15 +1,14 @@
 import React from 'react'
-import {View, Text, FlatList} from 'react-native'
+import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
-import styles from './Styles/ListFlashSaleStyle'
-import FlashSaleDetail from '../Components/Screen/FlashSaleDetail'
-import FlashSaleScreenAPI from '../Services/FlashSaleScreenAPI'
-
-class ListFlashSale extends React.PureComponent {
+import styles from './Styles/CategoryListViewStyle'
+import CategoryScreenAPI from '../Services/CategoryScreenAPI'
+import {currency} from '../Lib/global'
+class ProductListView extends React.PureComponent {
   api = null;
 
   defaultState = {
@@ -22,7 +21,7 @@ class ListFlashSale extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.api = new FlashSaleScreenAPI();
+    this.api = new CategoryScreenAPI();
     this.state = this.defaultState;
   }
 
@@ -33,12 +32,20 @@ class ListFlashSale extends React.PureComponent {
     }, 500);
   }
 
+
+  componentDidMount() {
+    this.onEndReached();
+  }
+
+
   onEndReached() {
+    const {params} = this.props;
+    const name = params.name;
     if (this.state.totalPage > 0 && this.state.totalPage < this.state.currentPage) {
       console.log('Total page: ' + this.state.totalPage + ' ---- currentPage: ' + this.state.currentPage);
       return;
     }
-    this.api.flashSaleDetail(this.state.currentPage, (json) => {
+    this.api.searchProduct(name, this.state.currentPage, (json) => {
       this.setState({refreshing: false});
       if (!json.status) {
         return;
@@ -64,6 +71,11 @@ class ListFlashSale extends React.PureComponent {
     });
   }
 
+  gotoDetail = (id) => {
+    const {navigate} = this.props.navigation;
+    navigate('ProductDetailScreen', {id: id});
+  }
+
   /* ***********************************************************
    * STEP 2
    * `renderRow` function. How each cell/row should be rendered
@@ -73,7 +85,13 @@ class ListFlashSale extends React.PureComponent {
    return <MyCustomCell title={item.title} description={item.description} />
    *************************************************************/
   renderRow({item}) {
-    return <FlashSaleDetail item={item}></FlashSaleDetail>
+    return (
+      <TouchableOpacity onPress={() => this.gotoDetail(item.id)} style={styles.item}>
+        <Image style={styles.thumbnail} source={{uri: item.thumbnail}}/>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.price}>{currency(item.price)}</Text>
+      </TouchableOpacity>
+    )
   }
 
   /* ***********************************************************
@@ -99,6 +117,7 @@ class ListFlashSale extends React.PureComponent {
   renderSeparator = () => {
     return null
   }
+
 
   // The default function if no Key is provided is index
   // an identifiable key is important if you plan on
@@ -133,6 +152,7 @@ class ListFlashSale extends React.PureComponent {
           contentContainerStyle={styles.listContent}
           data={this.state.products}
           renderItem={(item) => this.renderRow(item)}
+          numColumns={2}
           keyExtractor={this.keyExtractor}
           initialNumToRender={this.oneScreensWorth}
           ListHeaderComponent={this.renderHeader}
@@ -146,7 +166,9 @@ class ListFlashSale extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    navigation: state.navigate.navigation
+  }
 }
 
-export default connect(mapStateToProps)(ListFlashSale)
+export default connect(mapStateToProps)(ProductListView)
