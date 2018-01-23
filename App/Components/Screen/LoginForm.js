@@ -11,10 +11,6 @@ class LoginForm extends Component {
     console.log(JSON.stringify(values));
   }
 
-  onSubmit() {
-    console.log(this._form.props.onSubmit())
-  }
-
   registerScreen() {
     this.props.navigation.navigate('RegisterScreen');
   }
@@ -24,7 +20,6 @@ class LoginForm extends Component {
       <View style={styles.container}>
         <Text style={styles.heading}>{I18n.t('Heading_Login')}</Text>
         <Login
-          ref={(f) => this._form = f}
           registerScreen={() => this.registerScreen()}
           onSubmit={(values) => this.submitForm(values)}
         />

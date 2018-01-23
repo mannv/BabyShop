@@ -8,7 +8,7 @@ import {input, password} from './control'
 import I18n from '../../I18n'
 import RoundedButton from '../../Components/RoundedButton'
 import styles from '../../Components/Styles/LoginFormStyle'
-import {required, email} from './validate'
+import {required, email, max32, min6} from './validate'
 function Login(props) {
   return (
     <View>
@@ -23,7 +23,7 @@ function Login(props) {
         name={'password'}
         label={'Password'}
         component={password}
-        validate={[required]}
+        validate={[required, max32, min6]}
       />
       <View style={{paddingTop: 20, flexDirection: 'row'}}>
         <View style={{flex: 1}}>
