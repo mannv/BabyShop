@@ -1,48 +1,40 @@
 import React, {Component} from 'react'
 // import PropTypes from 'prop-types';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native'
 import styles from '../Styles/LoginFormStyle'
 import I18n from '../../I18n'
-import RoundedButton from '../RoundedButton'
+import Login from '../../Redux/Form/Login'
+import {connect} from 'react-redux'
 
-export default class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    }
+class LoginForm extends Component {
+  submitForm = (values) => {
+    console.log(JSON.stringify(values));
   }
 
-  _loginAction = () => {
-    console.log(this.state.email.toLowerCase());
-    console.log(this.state.password);
+  onSubmit() {
+    console.log(this._form.props.onSubmit())
+  }
+
+  registerScreen() {
+    this.props.navigation.navigate('RegisterScreen');
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>{I18n.t('Heading_Login')}</Text>
-        <View style={styles.form}>
-          <TextInput onChangeText={(email) => this.setState({email})} value={this.state.email}
-                     keyboardType='email-address' style={[styles.inputText, {marginTop: 20}]}
-                     placeholder={I18n.t('Placeholder_Email_Address')}/>
-          <TextInput onChangeText={(password) => this.setState({password})}
-                     value={this.state.password} style={[styles.inputText, {marginTop: 20}]}
-                     placeholder={I18n.t('Placeholder_Password')} secureTextEntry={true}/>
-
-          <View style={{paddingTop: 20, flexDirection: 'row'}}>
-            <View style={{flex: 1}}>
-              <RoundedButton text={I18n.t('signIn')} onPress={() => this._loginAction()}/>
-            </View>
-            <View style={{flex: 2}}>
-              <TouchableOpacity onPress={() => this.props.registerScene()}>
-                <Text style={styles.registerLink}>{I18n.t('Link_Register_New_Account')}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <Login
+          ref={(f) => this._form = f}
+          registerScreen={() => this.registerScreen()}
+          onSubmit={(values) => this.submitForm(values)}
+        />
       </View>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {navigation: state.navigate.navigation}
+}
+
+export default connect(mapStateToProps)(LoginForm)

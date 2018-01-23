@@ -48,5 +48,8 @@
   "total_price":"Total price",
   "btn_check_out":"Check out",
   "please_waiting":"Waiting...",
-  "cart_empty":"This cart is empty, please add product to card to purchase"
+  "cart_empty":"This cart is empty, please add product to card to purchase",
+  //validate
+  "validate_required":"This field is required",
+  "validate_email":"Email is valid"
 }

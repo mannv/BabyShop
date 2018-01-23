@@ -9,7 +9,7 @@ export default class RoundedButton extends Component {
     text: PropTypes.string,
     children: PropTypes.string,
     navigator: PropTypes.object,
-    style: PropTypes.object
+    style: {}
   }
 
   getText () {

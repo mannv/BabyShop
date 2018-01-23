@@ -6,21 +6,21 @@ import LoginForm from '../Components/Screen/LoginForm'
 
 // Styles
 import styles from './Styles/LoginScreenStyle'
-
+import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 class LoginScreen extends Component {
 
-  openRegisterScreen = () => {
-    this.props.navigation.navigate('RegisterScreen');
+  componentDidMount() {
+    this.props.setCurrentNavigation(this.props.navigation);
   }
 
   render() {
     return (
       <View style={styles.mainContainer}>
         <View style={{flex: 1}}>
-          <BabyLogoLarge></BabyLogoLarge>
+          <BabyLogoLarge />
         </View>
         <View style={[styles.container, {flex: 2, padding: 50}]}>
-          <LoginForm registerScene={() => this.openRegisterScreen()}></LoginForm>
+          <LoginForm />
         </View>
       </View>
     )
@@ -31,8 +31,4 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+export default connect(mapStateToProps, {setCurrentNavigation})(LoginScreen)

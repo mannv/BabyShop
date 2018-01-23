@@ -11,9 +11,7 @@ export default StyleSheet.create({
     fontSize: 30 * Metrics.fontScale,
     textAlign: 'center'
   },
-  form: {
-  },
-  registerLink: {
+  registerLink : {
     ...ApplicationStyles.screen.link,
     paddingTop: 12,
     textAlign: 'right'
