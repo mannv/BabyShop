@@ -51,5 +51,8 @@
   "cart_empty":"This cart is empty, please add product to card to purchase",
   //validate
   "validate_required":"This field is required",
-  "validate_email":"Email is valid"
+  "validate_email":"Email is valid",
+  "validate_max":"Must be {{max}} characters or less",
+  "validate_min":"Must be {{min}} characters or more",
+  "validate_confirm_password":"confirm password much same password"
 }

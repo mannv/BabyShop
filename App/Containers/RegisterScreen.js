@@ -1,23 +1,25 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {View, Text} from 'react-native'
+import {connect} from 'react-redux'
 
 // Styles
 import styles from './Styles/RegisterScreenStyle'
-import BabyLogoLarge from '../Components/Screen/BabyLogoLarge'
 import RegisterForm from '../Components/Screen/RegisterForm'
+import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
 
 class RegisterScreen extends Component {
 
-  backLoginScreen = () => {
-    this.props.navigation.goBack();
+
+  componentDidMount() {
+    this.props.setCurrentNavigation(this.props.navigation);
   }
 
-  render () {
+
+  render() {
     return (
       <View style={styles.mainContainer}>
         <View style={[styles.container, {padding: 50}]}>
-          <RegisterForm backLoginScreen={() => this.backLoginScreen()}></RegisterForm>
+          <RegisterForm />
         </View>
       </View>
     )
@@ -25,13 +27,7 @@ class RegisterScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-  }
+  return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)
+export default connect(mapStateToProps, {setCurrentNavigation})(RegisterScreen)

@@ -9,12 +9,16 @@ export const email = value => (emailPattern.test(value) ? undefined : I18n.t('va
 
 
 const maxLength = max => value => {
-  return value && value.length > max ? `Must be ${max} characters or less` : undefined
+  return value && value.length > max ? I18n.t('validate_max', {max}) : undefined
 }
 
 const minLength = min => value => {
-  return value && value.length < min ? `Must be ${min} characters or more` : undefined
+  return value && value.length < min ? I18n.t('validate_min', {min}) : undefined
 }
 
 export const max32 = maxLength(32)
 export const min6 = minLength(6)
+export const confirmPassword = (value, allValues) => {
+  return allValues.password && allValues.password != value ? I18n.t('validate_confirm_password') : undefined
+}
+
