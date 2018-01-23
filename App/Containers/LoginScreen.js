@@ -19,7 +19,7 @@ class LoginScreen extends Component {
         <View style={{flex: 1}}>
           <BabyLogoLarge />
         </View>
-        <View style={[styles.container, {flex: 2, padding: 50}]}>
+        <View style={[styles.container, {flex: 2, padding: 25}]}>
           <LoginForm />
         </View>
       </View>

@@ -18,7 +18,7 @@ class RegisterScreen extends Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <View style={[styles.container, {padding: 50}]}>
+        <View style={[styles.container, {padding: 25}]}>
           <RegisterForm />
         </View>
       </View>
