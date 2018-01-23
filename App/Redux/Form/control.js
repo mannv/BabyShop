@@ -17,27 +17,29 @@ function renderError(message) {
 
 export function input(props) {
   const {input, meta, ...inputProps} = props;
+  const isError = meta.submitFailed && meta.error;
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
-      <TextInput style={styles.inputText}
+      <TextInput style={[styles.inputText, isError ? {borderColor: Colors.fire} : {}]}
                  {...inputProps}
                  onChangeText={input.onChange}
                  onBlur={input.onBlur}
                  onFocus={input.onFocus}
                  value={input.value}
       />
-      {(meta.submitFailed && meta.error) ? renderError(meta.error) : null}
+      {isError ? renderError(meta.error) : null}
     </View>
   )
 }
 
 export function password(props) {
   const {input, meta, ...inputProps} = props;
+  const isError = meta.submitFailed && meta.error;
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
-      <TextInput style={styles.inputText}
+      <TextInput style={[styles.inputText, isError ? {borderColor: Colors.fire} : {}]}
                  {...inputProps}
                  secureTextEntry={true}
                  onChangeText={input.onChange}
@@ -45,7 +47,7 @@ export function password(props) {
                  onFocus={input.onFocus}
                  value={input.value}
       />
-      {(meta.submitFailed && meta.error) ? renderError(meta.error) : null}
+      {isError ? renderError(meta.error) : null}
     </View>
   )
 }
