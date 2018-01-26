@@ -13,6 +13,13 @@ class LoginScreen extends Component {
     this.props.setCurrentNavigation(this.props.navigation);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.auth != undefined) {
+      this.props.navigation.navigate('MainScreen');
+    }
+  }
+
+
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -28,7 +35,10 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  console.log(state.auth.auth);
+  return {
+    auth: state.auth.auth
+  }
 }
 
 export default connect(mapStateToProps, {setCurrentNavigation})(LoginScreen)

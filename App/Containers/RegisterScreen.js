@@ -14,6 +14,11 @@ class RegisterScreen extends Component {
     this.props.setCurrentNavigation(this.props.navigation);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.auth != undefined) {
+      this.props.navigation.navigate('MainScreen');
+    }
+  }
 
   render() {
     return (
@@ -27,7 +32,9 @@ class RegisterScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    auth: state.auth.auth
+  }
 }
 
 export default connect(mapStateToProps, {setCurrentNavigation})(RegisterScreen)

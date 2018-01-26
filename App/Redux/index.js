@@ -11,6 +11,7 @@ export const reducers = combineReducers({
   navigate: require('./Reducer/CurrentNavigation').reducer,
   cart: require('./Reducer/CartRedux').reducer,
   popup: require('./Reducer/PopupRedux').reducer,
+  auth: require('./Reducer/AuthRedux').reducer,
   form
 })
 

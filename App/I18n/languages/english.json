@@ -54,5 +54,6 @@
   "validate_email":"Email is valid",
   "validate_max":"Must be {{max}} characters or less",
   "validate_min":"Must be {{min}} characters or more",
-  "validate_confirm_password":"confirm password much same password"
+  "validate_confirm_password":"confirm password much same password",
+  "email_or_password_is_incorrect":"Email or password is incorrect"
 }

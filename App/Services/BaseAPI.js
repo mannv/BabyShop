@@ -6,12 +6,16 @@ import Config from 'react-native-config'
 const API_URL = Config.API_URL;
 export default class BaseAPI {
   api = null;
+
   constructor() {
+    header = {};
+    // header['Authorization'] = 'Bearer ';
     this.api = apisauce.create({
       // base URL is read from the "constructor"
       baseURL: API_URL,
       // here are some default headers
       headers: {
+        ...header,
         'Cache-Control': 'no-cache',
         'Accept': 'application/babyshop.api.v1+json'
       },
@@ -20,26 +24,36 @@ export default class BaseAPI {
     });
   }
 
+  processResponse(json) {
+    if (json.problem == NONE) {
+      let response = {
+        status: json.problem == NONE,
+        data: json.data.data
+      };
+      if (json.data.hasOwnProperty('meta') && json.data.meta.hasOwnProperty('pagination')) {
+        response.pagination = json.data.meta.pagination;
+      }
+      return response;
+    } else {
+      return {status: false};
+    }
+  }
+
   get = (endpoint, responseCallback) => {
     console.log(`GET: ${endpoint}`);
-    this.api.get(endpoint).then((json) => {
-      if(json.problem == NONE) {
-        let response = {
-          status: json.problem == NONE,
-          data: json.data.data
-        };
-        if(json.data.hasOwnProperty('meta') && json.data.meta.hasOwnProperty('pagination')) {
-          response.pagination = json.data.meta.pagination;
-        }
-        return response;
-      } else {
-        console.log(json);
-        return {status: false};
-      }
-    }).then((json) => {
+    this.api.get(endpoint).then((json) => this.processResponse(json)).then((json) => {
       responseCallback(json);
     }).catch((e) => {
-      console.log('Error2: ' + e.message);
+      console.log('Error: ' + e.message);
+    });
+  }
+
+  post = (endpoint, params = {}, responseCallback) => {
+    console.log(`POST: ${endpoint}`);
+    this.api.post(endpoint, params).then((json) => this.processResponse(json)).then((json) => {
+      responseCallback(json);
+    }).catch((e) => {
+      console.log('Error: ' + e.message);
     });
   }
 }
