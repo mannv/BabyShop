@@ -24,7 +24,7 @@ class CartScreen extends Component {
     this.state = {
       products: []
     }
-    this.api = new CartScreenAPI();
+    this.api = new CartScreenAPI(props);
   }
 
   componentDidMount() {
@@ -152,6 +152,7 @@ class CartScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     cart: state.cart.cart,
+    auth: state.auth.auth,
     deleteCart: state.popup.deleteCartItem,
     navigation: state.navigate.navigation
   }

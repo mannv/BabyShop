@@ -25,7 +25,7 @@ class HomeScreen extends Component {
       categoryFeatureData: [],
       fetchAPI: 0
     }
-    this.api = new MainScreenAPI();
+    this.api = new MainScreenAPI(props);
   }
 
   loadSwiperData() {
@@ -101,7 +101,10 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {navigation: state.navigate.navigation}
+  return {
+    navigation: state.navigate.navigation,
+    auth: state.auth.auth
+  }
 }
 
 export default connect(mapStateToProps, {showWaiting, hideWaiting})(HomeScreen)

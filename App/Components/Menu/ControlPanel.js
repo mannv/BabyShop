@@ -19,14 +19,13 @@ class ControlPanel extends Component {
     this.state = {
       cateItems: []
     }
-    this.api = new MainScreenAPI();
+    this.api = new MainScreenAPI(props);
   }
 
   // Defaults for props
   static defaultProps = {
     closeMenu: PropTypes.func
   }
-
 
   componentDidMount() {
     this.api.categories((json) => {
@@ -35,7 +34,6 @@ class ControlPanel extends Component {
       }
     });
   }
-
 
   render() {
     return (
@@ -56,7 +54,9 @@ class ControlPanel extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    auth: state.auth.auth
+  }
 }
 
 export default connect(mapStateToProps)(ControlPanel)

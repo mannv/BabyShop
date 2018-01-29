@@ -22,7 +22,7 @@ class ListFlashSale extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.api = new FlashSaleScreenAPI();
+    this.api = new FlashSaleScreenAPI(props);
     this.state = this.defaultState;
   }
 
@@ -146,7 +146,9 @@ class ListFlashSale extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    auth: state.auth.auth
+  }
 }
 
 export default connect(mapStateToProps)(ListFlashSale)

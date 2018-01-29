@@ -22,7 +22,7 @@ class ProductDetailScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.api = new ProductDetailScreenAPI();
+    this.api = new ProductDetailScreenAPI(props);
     this.state = {
       amount: 1,
       product: null
@@ -129,7 +129,9 @@ class ProductDetailScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    auth: state.auth.auth
+  }
 }
 
 export default connect(mapStateToProps, {setCurrentNavigation, addToCart, showWaiting, hideWaiting})(ProductDetailScreen)

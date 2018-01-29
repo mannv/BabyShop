@@ -12,7 +12,7 @@ class LoginForm extends Component {
   api = null;
   constructor(props) {
     super(props);
-    this.api = new UsersAPI();
+    this.api = new UsersAPI(props);
   }
 
   submitForm = (values) => {

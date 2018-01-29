@@ -35,7 +35,6 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.auth.auth);
   return {
     auth: state.auth.auth
   }

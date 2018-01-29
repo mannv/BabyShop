@@ -21,7 +21,7 @@ class CategoryListView extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.api = new CategoryScreenAPI();
+    this.api = new CategoryScreenAPI(props);
     this.state = this.defaultState;
   }
 
@@ -167,7 +167,8 @@ class CategoryListView extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    navigation: state.navigate.navigation
+    navigation: state.navigate.navigation,
+    auth: state.auth.auth
   }
 }
 

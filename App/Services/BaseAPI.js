@@ -7,9 +7,12 @@ const API_URL = Config.API_URL;
 export default class BaseAPI {
   api = null;
 
-  constructor() {
+  constructor(props) {
     header = {};
-    // header['Authorization'] = 'Bearer ';
+    if(props != undefined && props.auth.token != undefined) {
+      console.log('Token: ' + props.auth.token);
+      header['Authorization'] = `Bearer ${props.auth.token}`;
+    }
     this.api = apisauce.create({
       // base URL is read from the "constructor"
       baseURL: API_URL,
