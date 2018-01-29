@@ -9,7 +9,7 @@ export default class BaseAPI {
 
   constructor(props) {
     header = {};
-    if(props != undefined && props.auth.token != undefined) {
+    if(props.hasOwnProperty('auth') && props.auth.token != undefined) {
       console.log('Token: ' + props.auth.token);
       header['Authorization'] = `Bearer ${props.auth.token}`;
     }
@@ -38,13 +38,14 @@ export default class BaseAPI {
       }
       return response;
     } else {
+      console.log('problem: ' + json.problem);
       return {status: false};
     }
   }
 
-  get = (endpoint, responseCallback) => {
+  get = (endpoint, responseCallback, config = undefined) => {
     console.log(`GET: ${endpoint}`);
-    this.api.get(endpoint).then((json) => this.processResponse(json)).then((json) => {
+    this.api.get(endpoint, undefined, config).then((json) => this.processResponse(json)).then((json) => {
       responseCallback(json);
     }).catch((e) => {
       console.log('Error: ' + e.message);

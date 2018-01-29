@@ -8,9 +8,11 @@ import {connect} from 'react-redux'
 import styles from './Styles/CategoryListViewStyle'
 import CategoryScreenAPI from '../Services/CategoryScreenAPI'
 import {currency} from '../Lib/global'
+import axios from 'axios';
+
 class CategoryListView extends React.PureComponent {
   api = null;
-
+  listSource = [];
   defaultState = {
     products: [],
     currentPage: 1,
@@ -38,6 +40,25 @@ class CategoryListView extends React.PureComponent {
   }
 
 
+  componentWillUnmount() {
+    // this.source.cancel();
+    if (this.listSource.length > 0) {
+      this.listSource.map(item => {
+        item.cancel();
+      })
+    }
+  }
+
+
+  createSource() {
+    let CancelToken = axios.CancelToken;
+    let source = CancelToken.source();
+    this.listSource.push(source);
+    return {
+      cancelToken: source.token
+    };
+  }
+
   onEndReached() {
     const {params} = this.props;
     const cateId = params.id;
@@ -45,11 +66,13 @@ class CategoryListView extends React.PureComponent {
       console.log('Total page: ' + this.state.totalPage + ' ---- currentPage: ' + this.state.currentPage);
       return;
     }
-    this.api.categoryProduct(cateId, this.state.currentPage, (json) => {
-      this.setState({refreshing: false});
+
+
+    this.api.categoryProduct(cateId, this.state.currentPage, this.createSource(), (json) => {
       if (!json.status) {
         return;
       }
+      this.setState({refreshing: false});
       const {pagination} = json;
 
       if (this.state.pageLoad.find(e => e == pagination.current_page)) {
