@@ -2,7 +2,7 @@
  * Created by man.nv on 1/23/18.
  */
 import React from 'react'
-import {TextInput, View, Text} from 'react-native'
+import {TextInput, View, Text, Picker} from 'react-native'
 import styles from './control.styles'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Metrics, Colors} from '../../Themes'
@@ -59,5 +59,22 @@ export function password(props) {
       />
       {isError ? renderError(errorMessage) : null}
     </View>
+  )
+}
+export function picker(props) {
+  const {input, meta, errors, options, ...inputProps} = props;
+  return (
+    <Picker
+      {...inputProps}
+      selectedValue={input.value}
+      onValueChange={input.onChange}>
+      {
+        options.map((item, key) => {
+          return (
+            <Picker.Item key={key} label={item.language} value={item.locale} />
+          )
+        })
+      }
+    </Picker>
   )
 }

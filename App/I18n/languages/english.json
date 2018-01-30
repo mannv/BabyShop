@@ -57,5 +57,8 @@
   "validate_confirm_password":"confirm password much same password",
   "email_or_password_is_incorrect":"Email or password is incorrect",
   "checkout_done":"Thank you purchase product on store.",
-  "back_to_home":"Back to HOME"
+  "back_to_home":"Back to HOME",
+  "profile":"Profile",
+  "btn_update":"Update",
+  "language":"Locale"
 }

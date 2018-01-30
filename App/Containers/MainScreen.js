@@ -8,7 +8,7 @@ import TabNavigator from 'react-native-tab-navigator';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import HomeScreen from './HomeScreen'
-import ProfileScreen from './ProfileScreen'
+import ProfileScreen from './Profile/ProfileScreen'
 import CartScreen from './CartScreen'
 import {Metrics, Colors} from '../Themes'
 import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'

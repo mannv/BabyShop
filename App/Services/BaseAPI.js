@@ -73,4 +73,13 @@ export default class BaseAPI {
       console.log('Error: ' + e.message);
     });
   }
+
+  put = (endpoint, params = {}, responseCallback) => {
+    console.log(`PUT: ${endpoint}`);
+    this.api.put(endpoint, params, this.cancelToken).then((json) => this.processResponse(json)).then((json) => {
+      responseCallback(json);
+    }).catch((e) => {
+      console.log('Error: ' + e.message);
+    });
+  }
 }
