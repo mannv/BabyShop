@@ -1,9 +1,10 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-import {NONE} from 'apisauce'
+import {NONE, CLIENT_ERROR} from 'apisauce'
 import Config from 'react-native-config'
 
 const API_URL = Config.API_URL;
+export const VALIDATE_CODE = 422;
 export default class BaseAPI {
   cancelToken = {};
   api = null;
@@ -39,7 +40,19 @@ export default class BaseAPI {
       return response;
     } else {
       console.log('problem: ' + json.problem);
-      return {status: false};
+      let data = undefined;
+      let status_code = undefined;
+      if(json.hasOwnProperty('data')) {
+        data = json.data;
+        if(data.hasOwnProperty('status_code')) {
+          status_code = data.status_code;
+        }
+      }
+      return {
+        data,
+        status_code,
+        status: false
+      };
     }
   }
 

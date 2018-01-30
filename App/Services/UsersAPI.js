@@ -5,4 +5,7 @@ export default class UsersAPI extends BaseAPI {
   login = (params = {}, responseCallback) => {
     this.post('auth/login', params, responseCallback);
   }
+  register = (params = {}, responseCallback) => {
+    this.post('users', params, responseCallback);
+  }
 }

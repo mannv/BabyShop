@@ -11,14 +11,10 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     this.props.setCurrentNavigation(this.props.navigation);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
     if(this.props.auth != undefined) {
       this.props.navigation.navigate('MainScreen');
     }
   }
-
 
   render() {
     return (

@@ -17,6 +17,7 @@ export default class MyComponent extends Component {
   }
 
   componentWillUnmount() {
+    console.log('componentWillUnmount');
     if (this.listRequest.length == 0) {
       console.log('khong co request nao');
       return;

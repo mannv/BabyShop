@@ -16,8 +16,13 @@ function renderError(message) {
 }
 
 export function input(props) {
-  const {input, meta, ...inputProps} = props;
-  const isError = meta.submitFailed && meta.error;
+  const {input, meta, errors, ...inputProps} = props;
+  let isError = meta.submitFailed && meta.error;
+  let errorMessage = meta.error;
+  if(errors != undefined && errors.hasOwnProperty(input.name)) {
+    isError = true;
+    errorMessage = errors[input.name];
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
@@ -28,14 +33,19 @@ export function input(props) {
                  onFocus={input.onFocus}
                  value={input.value}
       />
-      {isError ? renderError(meta.error) : null}
+      {isError ? renderError(errorMessage) : null}
     </View>
   )
 }
 
 export function password(props) {
-  const {input, meta, ...inputProps} = props;
-  const isError = meta.submitFailed && meta.error;
+  const {input, meta, errors, ...inputProps} = props;
+  let isError = meta.submitFailed && meta.error;
+  let errorMessage = meta.error;
+  if(errors != undefined && errors.hasOwnProperty(input.name)) {
+    isError = true;
+    errorMessage = errors[input.name];
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
@@ -47,7 +57,7 @@ export function password(props) {
                  onFocus={input.onFocus}
                  value={input.value}
       />
-      {isError ? renderError(meta.error) : null}
+      {isError ? renderError(errorMessage) : null}
     </View>
   )
 }

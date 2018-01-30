@@ -16,12 +16,14 @@ function Register(props) {
   return (
     <View>
       <Field
-        name={'fullName'}
+        errors={props.errors}
+        name={'name'}
         label={I18n.t('Label_Fullname')}
         component={input}
         validate={[required]}
       />
       <Field
+        errors={props.errors}
         name={'phone'}
         label={I18n.t('Label_Phone_number')}
         component={input}
@@ -29,6 +31,7 @@ function Register(props) {
         validate={[required]}
       />
       <Field
+        errors={props.errors}
         name={'email'}
         label={I18n.t('Label_Email_address')}
         component={input}
@@ -37,13 +40,15 @@ function Register(props) {
         normalize={lower}
       />
       <Field
+        errors={props.errors}
         name={'password'}
         label={I18n.t('Label_Password')}
         component={password}
         validate={[required, max32, min6]}
       />
       <Field
-        name={'rePassword'}
+        errors={props.errors}
+        name={'password_confirmation'}
         label={I18n.t('Label_Enter_password_again')}
         component={password}
         validate={[required, max32, min6, confirmPassword]}
