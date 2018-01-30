@@ -17,7 +17,7 @@ export const reducer = (state = defaultState, action) => {
   if (action.type == AUTH_LOGOUT) {
     return {
       ...state,
-      auth: {}
+      auth: undefined
     }
   }
 

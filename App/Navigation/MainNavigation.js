@@ -6,7 +6,7 @@ import AllScreen from './Screen'
 const PrimaryNav = StackNavigator(AllScreen, {
   // Default config for all screens
   headerMode: 'none',
-  initialRouteName: 'CheckOutScreen',
+  initialRouteName: 'MainScreen',
   navigationOptions: {
     headerStyle: styles.header
   }

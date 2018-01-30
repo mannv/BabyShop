@@ -8,11 +8,9 @@ import GuestNavigation from './GuestNavigation'
 // here is our redux-aware smart component
 function ReduxNavigation(props) {
   const {auth, rehydrated} = props;
-  console.log('rehydrated: ' + rehydrated);
   if(!rehydrated) {
     return <Text></Text>
   }
-
   if (auth == undefined) {
     return <GuestNavigation />
   }

@@ -19,6 +19,7 @@ export default StyleSheet.create({
   },
   registerDate: {
     ...Fonts.style.normal,
+    fontSize: Fonts.size.small,
     paddingLeft: Metrics.baseMargin
   },
   logout: {
