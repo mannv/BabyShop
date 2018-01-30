@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {Metrics} from '../Themes'
 import I18n from '../I18n'
 import {deleteCartItem, showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
+import {emptyCart} from '../Redux/Actions/CartAction'
 import CartScreenAPI from '../Services/CartScreenAPI'
 
 import {currency} from '../Lib/global'
@@ -28,7 +29,7 @@ class CartScreen extends MyComponent {
   }
 
   componentDidMount() {
-    if(this.checkCartEmpty()) {
+    if (this.checkCartEmpty()) {
       return;
     }
     const {cart} = this.props;
@@ -50,22 +51,32 @@ class CartScreen extends MyComponent {
 
   checkOut = () => {
     this.props.showWaiting();
-    setTimeout(() => {
+    this.api.cancelToken = this.makeRequest();
+    this.api.checkout(this.props.cart, (json) => {
       this.props.hideWaiting();
-      this.props.navigation.navigate('CheckOutScreen');
-    }, 5000);
+      setTimeout(() => {
+        this.props.emptyCart();
+        this.props.navigation.navigate('CheckOutScreen');
+      }, 500);
+    });
+    //this.props.cart
+    // this.props.showWaiting();
+    // setTimeout(() => {
+    //   this.props.hideWaiting();
+    //   this.props.navigation.navigate('CheckOutScreen');
+    // }, 5000);
   }
 
   checkCartEmpty() {
     const {cart} = this.props;
-    if(cart.length == 0) {
+    if (cart.length == 0) {
       return true;
     }
     return false;
   }
 
   renderCartBottom = () => {
-    if(this.checkCartEmpty() || this.state.products.length == 0) {
+    if (this.checkCartEmpty() || this.state.products.length == 0) {
       return null;
     }
 
@@ -100,7 +111,7 @@ class CartScreen extends MyComponent {
   }
 
   removeCartIcon() {
-    if(this.checkCartEmpty() || this.state.products.length == 0) {
+    if (this.checkCartEmpty() || this.state.products.length == 0) {
       return;
     }
     return (
@@ -111,15 +122,15 @@ class CartScreen extends MyComponent {
   }
 
   renderCartDetail() {
-    if(this.checkCartEmpty()) {
-        return (
-          <View style={{justifyContent: 'center', marginTop: Metrics.screenHeight / 4}}>
-            <Text style={{textAlign: 'center'}}>{I18n.t('cart_empty')}</Text>
-          </View>
-        )
+    if (this.checkCartEmpty()) {
+      return (
+        <View style={{justifyContent: 'center', marginTop: Metrics.screenHeight / 4}}>
+          <Text style={{textAlign: 'center'}}>{I18n.t('cart_empty')}</Text>
+        </View>
+      )
     }
 
-    if(this.state.products.length > 0) {
+    if (this.state.products.length > 0) {
       return (
         <CartList products={this.state.products}></CartList>
       )
@@ -159,4 +170,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {deleteCartItem, showWaiting, hideWaiting})(CartScreen)
+export default connect(mapStateToProps, {deleteCartItem, showWaiting, hideWaiting, emptyCart})(CartScreen)

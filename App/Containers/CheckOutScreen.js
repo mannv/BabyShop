@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 // Styles
 import styles from './Styles/CheckOutScreenStyle'
 import {setCurrentNavigation} from '../Redux/Actions/NavigationAction'
+import BabyLogoLarge from '../Components/Screen/BabyLogoLarge'
+import I18n from '../I18n'
 class CheckOutScreen extends Component {
 
   componentDidMount() {
@@ -20,10 +22,13 @@ class CheckOutScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Check out success</Text>
-        <TouchableOpacity onPress={() => this.backtoHome()}>
-          <Text>Back to HOME</Text>
-        </TouchableOpacity>
+        <BabyLogoLarge style={{flex: 1}} />
+        <View style={{flex: 1}}>
+          <Text style={styles.success}>{I18n.t('checkout_done')}</Text>
+          <TouchableOpacity onPress={() => this.backtoHome()}>
+            <Text style={{textAlign: 'center'}}>{I18n.t('back_to_home')}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
