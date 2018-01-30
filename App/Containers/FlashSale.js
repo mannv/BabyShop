@@ -82,6 +82,7 @@ class FlashSale extends React.PureComponent {
   }
 
   render() {
+    console.log('Render lai nhe');
     const {items} = this.props;
     return (
       <View style={styles.container}>

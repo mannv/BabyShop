@@ -1,5 +1,4 @@
 import React from 'react'
-import * as ReactNavigation from 'react-navigation'
 import {connect} from 'react-redux'
 import {Text} from 'react-native'
 import MainNavigation from './MainNavigation'
@@ -11,13 +10,20 @@ function ReduxNavigation(props) {
   if(!rehydrated) {
     return <Text></Text>
   }
+
+  let locale = 'en';
   if (auth == undefined) {
-    I18n.locale = 'en';
     return <GuestNavigation />
   }
-  I18n.locale = auth.locale;
+
+  I18n.locales["default"] = () => {
+    return [auth.locale];
+  }
+
+  console.log(I18n.locales.get());
   return <MainNavigation />
 }
+
 
 const mapStateToProps = (state) => {
   let rehydrated = undefined;
