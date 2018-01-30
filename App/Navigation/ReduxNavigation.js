@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Text} from 'react-native'
 import MainNavigation from './MainNavigation'
 import GuestNavigation from './GuestNavigation'
-
+import I18n from '../I18n'
 // here is our redux-aware smart component
 function ReduxNavigation(props) {
   const {auth, rehydrated} = props;
@@ -12,8 +12,10 @@ function ReduxNavigation(props) {
     return <Text></Text>
   }
   if (auth == undefined) {
+    I18n.locale = 'en';
     return <GuestNavigation />
   }
+  I18n.locale = auth.locale;
   return <MainNavigation />
 }
 

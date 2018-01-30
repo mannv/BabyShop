@@ -26,6 +26,7 @@ class ProfileScreen extends MyComponent {
     this.api.update(values, (json) => {
       this.props.hideWaiting();
       setTimeout(() => {
+        I18n.locale = json.data.locale;
         this.props.login(json.data);
       }, 100);
     })
