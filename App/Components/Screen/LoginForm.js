@@ -8,8 +8,10 @@ import {connect} from 'react-redux'
 import UsersAPI from '../../Services/UsersAPI'
 import {hideWaiting, showWaiting} from '../../Redux/Actions/PopupAction'
 import {login} from '../../Redux/Actions/AuthAction'
-class LoginForm extends Component {
+import MyComponent from '../../Basic/MyComponent'
+class LoginForm extends MyComponent {
   api = null;
+
   constructor(props) {
     super(props);
     this.api = new UsersAPI(props);
@@ -17,9 +19,10 @@ class LoginForm extends Component {
 
   submitForm = (values) => {
     this.props.showWaiting();
+    this.api.cancelToken = this.makeRequest();
     this.api.login(values, (json) => {
       this.props.hideWaiting();
-      if(json.data.hasOwnProperty('status') && json.data.status == -1) {
+      if (json.data.hasOwnProperty('status') && json.data.status == -1) {
         setTimeout(() => {
           Alert.alert(I18n.t('email_or_password_is_incorrect'));
         }, 100);

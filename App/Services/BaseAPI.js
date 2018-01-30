@@ -5,8 +5,8 @@ import Config from 'react-native-config'
 
 const API_URL = Config.API_URL;
 export default class BaseAPI {
+  cancelToken = {};
   api = null;
-
   constructor(props) {
     header = {};
     if(props.hasOwnProperty('auth') && props.auth.token != undefined) {
@@ -43,9 +43,9 @@ export default class BaseAPI {
     }
   }
 
-  get = (endpoint, responseCallback, config = undefined) => {
+  get = (endpoint, responseCallback) => {
     console.log(`GET: ${endpoint}`);
-    this.api.get(endpoint, undefined, config).then((json) => this.processResponse(json)).then((json) => {
+    this.api.get(endpoint, undefined, this.cancelToken).then((json) => this.processResponse(json)).then((json) => {
       responseCallback(json);
     }).catch((e) => {
       console.log('Error: ' + e.message);
@@ -54,7 +54,7 @@ export default class BaseAPI {
 
   post = (endpoint, params = {}, responseCallback) => {
     console.log(`POST: ${endpoint}`);
-    this.api.post(endpoint, params).then((json) => this.processResponse(json)).then((json) => {
+    this.api.post(endpoint, params, this.cancelToken).then((json) => this.processResponse(json)).then((json) => {
       responseCallback(json);
     }).catch((e) => {
       console.log('Error: ' + e.message);

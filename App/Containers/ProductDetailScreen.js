@@ -17,7 +17,9 @@ import {addToCart} from '../Redux/Actions/CartAction'
 import ProductDetailScreenAPI from '../Services/ProductDetailScreenAPI'
 import {currency} from '../Lib/global'
 import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
-class ProductDetailScreen extends Component {
+import MyComponent from '../Basic/MyComponent'
+
+class ProductDetailScreen extends MyComponent {
   api = null;
 
   constructor(props) {
@@ -47,6 +49,7 @@ class ProductDetailScreen extends Component {
     this.props.setCurrentNavigation(this.props.navigation);
     const {params} = this.props.navigation.state;
     this.props.showWaiting();
+    this.api.cancelToken = this.makeRequest();
     this.api.productDetail(params.id, (json) => {
       this.props.hideWaiting();
       if (!json.status) {

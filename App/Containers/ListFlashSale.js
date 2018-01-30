@@ -8,8 +8,8 @@ import {connect} from 'react-redux'
 import styles from './Styles/ListFlashSaleStyle'
 import FlashSaleDetail from '../Components/Screen/FlashSaleDetail'
 import FlashSaleScreenAPI from '../Services/FlashSaleScreenAPI'
-
-class ListFlashSale extends React.PureComponent {
+import MyComponent from '../Basic/MyComponent'
+class ListFlashSale extends MyComponent {
   api = null;
 
   defaultState = {
@@ -38,11 +38,12 @@ class ListFlashSale extends React.PureComponent {
       console.log('Total page: ' + this.state.totalPage + ' ---- currentPage: ' + this.state.currentPage);
       return;
     }
+    this.api.cancelToken = this.makeRequest();
     this.api.flashSaleDetail(this.state.currentPage, (json) => {
-      this.setState({refreshing: false});
       if (!json.status) {
         return;
       }
+      this.setState({refreshing: false});
       const {pagination} = json;
 
       if (this.state.pageLoad.find(e => e == pagination.current_page)) {

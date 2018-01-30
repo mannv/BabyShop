@@ -15,8 +15,8 @@ import {deleteCartItem, showWaiting, hideWaiting} from '../Redux/Actions/PopupAc
 import CartScreenAPI from '../Services/CartScreenAPI'
 
 import {currency} from '../Lib/global'
-
-class CartScreen extends Component {
+import MyComponent from '../Basic/MyComponent'
+class CartScreen extends MyComponent {
   api = null;
 
   constructor(props) {
@@ -38,6 +38,7 @@ class CartScreen extends Component {
     });
 
     this.props.showWaiting();
+    this.api.cancelToken = this.makeRequest();
     this.api.getCartDetail(ids, (json) => {
       this.props.hideWaiting();
       if (!json.status) {

@@ -8,7 +8,8 @@ import {connect} from 'react-redux'
 import styles from './Styles/CategoryListViewStyle'
 import CategoryScreenAPI from '../Services/CategoryScreenAPI'
 import {currency} from '../Lib/global'
-class ProductListView extends React.PureComponent {
+import MyComponent from '../Basic/MyComponent'
+class ProductListView extends MyComponent {
   api = null;
 
   defaultState = {
@@ -45,11 +46,12 @@ class ProductListView extends React.PureComponent {
       console.log('Total page: ' + this.state.totalPage + ' ---- currentPage: ' + this.state.currentPage);
       return;
     }
+    this.api.cancelToken = this.makeRequest();
     this.api.searchProduct(name, this.state.currentPage, (json) => {
-      this.setState({refreshing: false});
       if (!json.status) {
         return;
       }
+      this.setState({refreshing: false});
       const {pagination} = json;
 
       if (this.state.pageLoad.find(e => e == pagination.current_page)) {

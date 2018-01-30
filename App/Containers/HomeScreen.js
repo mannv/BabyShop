@@ -14,7 +14,8 @@ import styles from './Styles/HomeScreenStyle'
 
 import MainScreenAPI from '../Services/MainScreenAPI'
 import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
-class HomeScreen extends Component {
+import MyComponent from '../Basic/MyComponent'
+class HomeScreen extends MyComponent {
   api = {};
 
   constructor(props) {
@@ -29,6 +30,7 @@ class HomeScreen extends Component {
   }
 
   loadSwiperData() {
+    this.api.cancelToken = this.makeRequest();
     this.api.banners((json) => {
       if (!json.status) {
         return;
@@ -39,6 +41,7 @@ class HomeScreen extends Component {
   }
 
   loadFlashSaleData() {
+    this.api.cancelToken = this.makeRequest();
     this.api.flashSale((json) => {
       if (!json.status) {
         return;
@@ -49,6 +52,7 @@ class HomeScreen extends Component {
   }
 
   loadCategoryFeatureData() {
+    this.api.cancelToken = this.makeRequest();
     this.api.categoriesFeature((json) => {
       if (!json.status) {
         return;

@@ -10,8 +10,8 @@ import I18n from '../../I18n'
 import {connect} from 'react-redux'
 import MainScreenAPI from '../../Services/MainScreenAPI'
 
-
-class ControlPanel extends Component {
+import MyComponent from '../../Basic/MyComponent'
+class ControlPanel extends MyComponent {
 
   api = {};
   constructor(props) {
@@ -28,6 +28,7 @@ class ControlPanel extends Component {
   }
 
   componentDidMount() {
+    this.api.cancelToken = this.makeRequest();
     this.api.categories((json) => {
       if(json.status) {
         this.setState({cateItems: json.data});
