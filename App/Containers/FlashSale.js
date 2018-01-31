@@ -1,7 +1,6 @@
 import React from 'react'
 import {View, Text, FlatList, Alert, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
-import I18n from '../I18n'
 // More info here: https://facebook.github.io/react-native/docs/flatlist.html
 
 // Styles
@@ -82,14 +81,13 @@ class FlashSale extends React.PureComponent {
   }
 
   render() {
-    console.log('Render lai nhe');
     const {items} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
-          <Text style={styles.title}>{I18n.t('flash_sale')}</Text>
+          <Text style={styles.title}>{this.props.title}</Text>
           <TouchableOpacity onPress={() => this.openListFlashSave()}>
-            <Text style={styles.more}>{I18n.t('more')}</Text>
+            <Text style={styles.more}>{this.props.moreText}</Text>
           </TouchableOpacity>
         </View>
         <FlatList

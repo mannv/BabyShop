@@ -10,7 +10,7 @@ export default StyleSheet.create({
   box: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: Metrics.screenWidth / 4,
+    width: Metrics.screenWidth / 3,
     height: Metrics.screenWidth / 4,
     backgroundColor: Colors.snow,
     padding: Metrics.baseMargin

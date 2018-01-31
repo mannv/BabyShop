@@ -15,6 +15,7 @@ import styles from './Styles/HomeScreenStyle'
 import MainScreenAPI from '../Services/MainScreenAPI'
 import {showWaiting, hideWaiting} from '../Redux/Actions/PopupAction'
 import MyComponent from '../Basic/MyComponent'
+import I18n from '../I18n'
 class HomeScreen extends MyComponent {
   api = {};
 
@@ -87,12 +88,12 @@ class HomeScreen extends MyComponent {
           <ScrollView>
             <MainSwiper items={this.state.swiperData}></MainSwiper>
             {
-              this.state.flashSaleData.length > 0 ? <FlashSale items={this.state.flashSaleData}></FlashSale> : null
+              this.state.flashSaleData.length > 0 ? <FlashSale title={I18n.t('flash_sale')} moreText={I18n.t('more')} items={this.state.flashSaleData}></FlashSale> : null
             }
             {
               this.state.categoryFeatureData.map((item, index) => {
                 return (
-                  <CategoryFeature category={item} key={index}></CategoryFeature>
+                  <CategoryFeature moreText={I18n.t('more')} category={item} key={index}></CategoryFeature>
                 )
               })
             }

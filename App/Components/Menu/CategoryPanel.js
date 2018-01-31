@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import styles from './CategoryPanelStyle'
-import I18n from '../../I18n'
 import {connect} from 'react-redux'
 class CategoryPanel extends Component {
   // Defaults for props
@@ -23,7 +22,7 @@ class CategoryPanel extends Component {
     const {items} = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>{I18n.t('list_category')}</Text>
+        <Text style={styles.header}>{this.props.title}</Text>
         {
           items.map((item, index) => {
             return (

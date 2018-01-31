@@ -44,7 +44,7 @@ class ControlPanel extends MyComponent {
         </View>
         <View style={{flex: 9}}>
           <ScrollView>
-            <CategoryPanel items={this.state.cateItems}></CategoryPanel>
+            <CategoryPanel title={I18n.t('list_category')} items={this.state.cateItems}></CategoryPanel>
           </ScrollView>
         </View>
         <View style={[{flex: 1}, styles.footer]}>

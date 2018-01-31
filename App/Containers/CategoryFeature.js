@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 // Styles
 import styles from './Styles/CategoryFeatureStyle'
-import I18n from '../I18n'
 import CategoryFeatureItem from '../Components/Screen/CategoryFeatureItem'
 class CategoryFeature extends React.PureComponent {
   /* ***********************************************************
@@ -77,7 +76,7 @@ class CategoryFeature extends React.PureComponent {
       <View style={styles.heading}>
         <Text style={styles.title}>{category.name}</Text>
         <TouchableOpacity onPress={() => this.openCategoryList()}>
-          <Text style={styles.more}>{I18n.t('more')}</Text>
+          <Text style={styles.more}>{this.props.moreText}</Text>
         </TouchableOpacity>
       </View>
       <FlatList
