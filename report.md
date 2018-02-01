@@ -13,6 +13,7 @@ App gồm các màn hình
 	+ có thể thay đổi số lượng sản phẩm, checkout
 - Flash sale list (with paginate)
 - Category list product (with paginate)
+- Màn hình liệt kê kết quả tìm kiếm (with paginate)
 - Product detail
 	+ có thể add vào giỏ hàng
 
