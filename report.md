@@ -1,3 +1,7 @@
+DEMO android
+[http://35.196.93.59/babyshop.apk](http://35.196.93.59/babyshop.apk)
+
+
 App gồm các màn hình
 - Login
 - Register
@@ -28,12 +32,9 @@ các plugin được sử dụng trong dự án
 + apisauce (tương tác với API)
 
 một số package có sử dụng thêm
-+ react-native-drawer
-	khi ấn vào icon menu góc trái trên ô search sẽ xuất hiện bảng điều khiển chiếm 2/3 màn hình
-+ react-native-swiper
-	làm slide cho main screen, VD chạy các sự kiện sale off, slide ảnh sản phẩm trong màn hình product detail
-+ redux-form
-	sử dụng cho form, login, register, edit profile
++ react-native-drawer: khi ấn vào icon menu góc trái trên ô search sẽ xuất hiện bảng điều khiển chiếm 2/3 màn hình
++ react-native-swiper: làm slide cho main screen, VD chạy các sự kiện sale off, slide ảnh sản phẩm trong màn hình product detail
++ redux-form: sử dụng cho form, login, register, edit profile
 
 
 Kiến thức có được sau khi hoàn thành DEMO
@@ -44,9 +45,6 @@ Kiến thức có được sau khi hoàn thành DEMO
 - sử dụng redux-persist để lưu những state mà khi ứng dụng tắt hẳn vẫn còn khi ứng đụng được bật lại thay cho AsyncStorage (code hơi bị vất)
 - sử dụng đa ngôn ngữ với I18n: https://github.com/AlexanderZaytsev/react-native-i18n
 - build ios, android
-
-DEMO android
-[http://35.196.93.59/babyshop.apk](http://35.196.93.59/babyshop.apk)
 
 
 ISSUE:
