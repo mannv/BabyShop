@@ -9,7 +9,7 @@ import {Metrics, Colors} from '../../Themes'
 function renderError(message) {
   return (
     <View style={{flexDirection: 'row'}}>
-      <Icon style={{color: Colors.fire}} name='error' size={Metrics.icons.tiny}></Icon>
+      <Icon style={{color: Colors.fire}} name={'error'} size={Metrics.icons.tiny}></Icon>
       <Text style={{color: Colors.fire}}>{message}</Text>
     </View>
   )
@@ -64,17 +64,20 @@ export function password(props) {
 export function picker(props) {
   const {input, meta, errors, options, ...inputProps} = props;
   return (
-    <Picker
-      {...inputProps}
-      selectedValue={input.value}
-      onValueChange={input.onChange}>
-      {
-        options.map((item, key) => {
-          return (
-            <Picker.Item key={key} label={item.language} value={item.locale} />
-          )
-        })
-      }
-    </Picker>
+    <View style={styles.container}>
+      <Text style={styles.label}>{props.label}</Text>
+      <Picker
+        {...inputProps}
+        selectedValue={input.value}
+        onValueChange={input.onChange}>
+        {
+          options.map((item, key) => {
+            return (
+              <Picker.Item key={key} label={item.language} value={item.locale} />
+            )
+          })
+        }
+      </Picker>
+    </View>
   )
 }

@@ -13,7 +13,7 @@ class PopupWaiting extends Component {
 
   render() {
     return (
-      <Modal transparent={true} visible={this.props.visible}>
+      <Modal transparent={true} visible={this.props.visible} onRequestClose={() => {}}>
         <View style={styles.container}>
           <View style={styles.box}>
             <ActivityIndicator size="large" color={Colors.organe} />

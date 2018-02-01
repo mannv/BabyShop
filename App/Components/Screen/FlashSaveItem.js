@@ -14,15 +14,10 @@ class FlashSaveItem extends Component {
   //
   // Defaults for props
   static defaultProps = {
-    item: {
-      id: 1,
-      price: '99000',
-      purchase: 1,
-      uri: 'https://cf.shopee.vn/file/578c3daa8652b3f2013fec08a1b6d037_tn'
-    }
+    item: {}
   }
 
-  openProjectDetail = () => {
+  openProductDetail = () => {
     const {navigate} = this.props.navigation;
     navigate('ProductDetailScreen', {id: this.props.item.id});
   }
@@ -39,11 +34,11 @@ class FlashSaveItem extends Component {
   render() {
     const {item} = this.props;
     return (
-      <TouchableOpacity style={styles.container} onPress={() => this.openProjectDetail()}>
-        <Image source={{url: item.thumbnail}} style={styles.thumbnail}></Image>
+      <TouchableOpacity style={styles.container} onPress={() => this.openProductDetail()}>
+        <Image source={{uri: item.thumbnail}} style={styles.thumbnail}></Image>
         <Text style={styles.price}>{currency(item.price)}</Text>
         <View style={styles.purchase}>
-          <Text style={styles.purchase_text}>{item.sold}</Text>
+          <Text style={styles.purchase_text}>{parseInt(item.sold) > 0 ? item.sold : 0}</Text>
         </View>
       </TouchableOpacity>
     )
