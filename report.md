@@ -67,6 +67,12 @@ trong quá trình thực hiện làm DEMO có gặp phải một số vấn đ�
 paddingTop: 0,
 paddingBottom: 0
 ```
+	
+	Textinput thêm props
+
+```
+underlineColorAndroid={'transparent'}
+````
 
 4. Redux-form trên react-native đang có issue sau khi reset thì validate không còn hoạt động nữa
 ISSUE này redux-form vẫn chưa xử lý: https://github.com/erikras/redux-form/issues/2971
