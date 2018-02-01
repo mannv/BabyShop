@@ -68,7 +68,7 @@ paddingTop: 0,
 paddingBottom: 0
 ```
 	
-	Textinput thêm props
+Textinput thêm props
 
 ```
 underlineColorAndroid={'transparent'}
