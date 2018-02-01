@@ -53,7 +53,9 @@ const ApplicationStyles = {
       borderRadius: Metrics.borderRadius,
       backgroundColor: Colors.snow,
       paddingLeft: Metrics.baseMargin,
-      paddingRight: Metrics.baseMargin
+      paddingRight: Metrics.baseMargin,
+      paddingBottom: 0,
+      paddingTop: 0
     },
     link: {
       ...Fonts.style.normal,

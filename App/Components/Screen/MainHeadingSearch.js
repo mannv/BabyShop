@@ -25,12 +25,15 @@ class MainHeadingSearch extends Component {
         <TouchableOpacity style={styles.iconTouchable} onPress={this.props.openMenu}>
           <Icon name='ios-menu' size={Metrics.icons.medium} color='white'/>
         </TouchableOpacity>
-        <TextInput onChangeText={(text) => this.setState({keyWord: text})} onBlur={() => this.searchProduct()} style={styles.searchInput}></TextInput>
+        <TextInput underlineColorAndroid={'transparent'} onChangeText={(text) => this.setState({keyWord: text})} onBlur={() => this.searchProduct()} style={styles.searchInput}></TextInput>
       </View>
     )
   }
 
   searchProduct() {
+    if(this.state.keyWord.length == 0) {
+      return;
+    }
     this.props.navigation.navigate('SearchScreen', {name: this.state.keyWord});
   }
 }

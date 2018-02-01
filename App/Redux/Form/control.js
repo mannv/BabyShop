@@ -28,6 +28,7 @@ export function input(props) {
       <Text style={styles.label}>{props.label}</Text>
       <TextInput style={[styles.inputText, isError ? {borderColor: Colors.fire} : {}]}
                  {...inputProps}
+                 underlineColorAndroid={'transparent'}
                  onChangeText={input.onChange}
                  onBlur={input.onBlur}
                  onFocus={input.onFocus}
@@ -51,6 +52,7 @@ export function password(props) {
       <Text style={styles.label}>{props.label}</Text>
       <TextInput style={[styles.inputText, isError ? {borderColor: Colors.fire} : {}]}
                  {...inputProps}
+                 underlineColorAndroid={'transparent'}
                  secureTextEntry={true}
                  onChangeText={input.onChange}
                  onBlur={input.onBlur}
